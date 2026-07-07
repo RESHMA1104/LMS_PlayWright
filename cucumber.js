@@ -1,5 +1,3 @@
-const { format } = require("node:path");
-
 module.exports = {
 
     default:{
@@ -9,7 +7,7 @@ module.exports = {
         requireModule: ["ts-node/register"],
 
         require:[
-           'src/helper/report.ts',
+            //'src/helper/report.ts',
             'src/test/hooks/**/*.ts',
             'src/world/**/*.ts',
             'src/test/step-definition/**/*.ts'
@@ -21,6 +19,7 @@ module.exports = {
         dryRun: false,
 
         format:[
+            'snippets',
             'progress',
             'json:reports/cucumber-json/cucumber-report.json',
             'html:reports/cucumber-html/cucumber-report.html',

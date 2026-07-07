@@ -1,5 +1,19 @@
-Feature: Create an new Course -- Prasanna Venkatesh K -- created at : 7/07/2026
+@Prasanna
+Feature: Course Creation
 
-Feature Description: To Validate the Course Creation Functionality with both valid and invalid using external Data-Driven
+              As an LMS Administrator
+              I want to create a new course So that learners can access course content through the LMS portal.
 
-        Scenario: Scenario name
+        Background:
+            Given User on the login page
+              And User enter the valid email
+              And User enter the valid password
+             When User clicks the Sign button
+             Then User should navigate to the Dashboard page
+             When The User Clicks on Course Management in DashboaedPage
+              And the user clicks the Add Course button
+
+        Scenario: Validate warning message when mandatory fields are empty
+             When the user clicks the Next button without entering course details
+             Then a warning message should be displayed
+

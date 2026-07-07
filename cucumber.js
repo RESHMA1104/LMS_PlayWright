@@ -26,7 +26,7 @@ module.exports = {
             "rerun:rerun/@rerun.txt"
         ],
 
-        parallel: 1
+        parallel: 2
 
     },
 

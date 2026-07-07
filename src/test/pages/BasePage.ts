@@ -116,4 +116,9 @@ export class BasePage {
     async pressEnter(locator: Locator) {
         await locator.press("Enter");
     }
+
+    async selectDropdown(dropdown: Locator, option: string) {
+        await dropdown.click();
+        await this.page.getByText(option, { exact: true }).click();
+}
 }

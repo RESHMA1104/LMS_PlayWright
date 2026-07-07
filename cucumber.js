@@ -20,7 +20,6 @@ module.exports = {
 
         format:[
             'snippets',
-            'progress',
             'json:reports/cucumber-json/cucumber-report.json',
             'html:reports/cucumber-html/cucumber-report.html',
             "rerun:rerun/@rerun.txt"
@@ -44,7 +43,7 @@ module.exports = {
 
 
         format:[
-            'progress',
+            'snippets',
             'json:reports/rerun-cucumber-json/cucumber-report.json',
             'html:reports/rerun-cucumber-html/cucumber-report.html',
             "rerun:rerun/@rerun.txt"

@@ -1,17 +1,17 @@
-[
-  {
-    "loginData": {
+{
+    "loginDetails": {
       "email": "testing@gmail.com",
       "password": "123"
+      },
+      "courseEdit":{
+        "CourseName": "Bug-Finder",
+        "Service Model": "HTD",
+        "Course Client": "jamocha",
+        "Sucess": "Course updated successfully"
+      },
+      
+      "courseValidation": {
+        "CourseCategory": "LMS test",
+        "ValidationMessage": "Please enter a course name"
       }
-  },
-
-  { 
-    "courseEdit":{
-      "CourseName": "Bug-Finder",
-      "Service Model": "HTD",
-      "Course Client": "jamocha"
-    }
-  }
-
-]
+}

@@ -18,6 +18,7 @@
 
   "scripts": {
     "rishwanth":"cucumber-js --tags @Rishwanth",
+    "prasanna": "cucumber-js --tags @Prasanna",
     "test": "cucumber-js",
     "test:rerun": "cucumber-js -p rerun",
     "report": "ts-node src/helper/report.ts",

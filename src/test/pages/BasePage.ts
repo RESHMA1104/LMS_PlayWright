@@ -5,6 +5,12 @@
 import { expect, Locator, Page } from "@playwright/test";
 
 export class BasePage {
+    protected page: Page;
+
+    // constructor to add Pages inside child class
+    constructor(page: Page){
+        this.page = page;
+    }
 
     // Fill inside the input field
     async fill(locator: Locator, value: string) {

@@ -8,6 +8,7 @@ import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from "@
 import { LoginPage } from "../pages/loginPage";
 import { DashBoardPage } from "../pages/dashboardpage";
 import { CourseManagementPage } from "../pages/coursemanagementpage";
+import { AddCourse } from "../pages/addCoursePage";
 
 // Default Timeout
 setDefaultTimeout(60 * 1000);
@@ -29,7 +30,7 @@ Before(async function (this: BugFinder) {
     this.loginPage = new LoginPage(this.page);
     this.dashboardPage = new DashBoardPage(this.page);
     this.coursemanagementPage = new CourseManagementPage(this.page);
-
+    this.addCoursePage = new AddCourse(this.page);
 })
 
 // If the test Failed ScreenShot capture 

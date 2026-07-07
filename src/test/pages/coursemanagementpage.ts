@@ -9,7 +9,7 @@ export class CourseManagementPage extends BasePage {
 
 
     constructor(page: Page) {
-        super();
+        super(page);
         this.page = page;
         this.searchBarCM = page.locator('//input[@data-slot="input"]');
         this.AddCourseStructureBtn = page.locator('(//span[text()="Bug-Finder"]/following::td/child::span/child::div/child::button)[1]');

@@ -1,8 +1,8 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import loginData from "../../../test-data/loginData.json";
-
+import { config } from "../../utils/config";
 Given("User on the login page", async function () {
-    await this.page.goto(process.env.BASE_URL!);
+    await this.page.goto(config.baseUrl);
 });
 
 Given("User enter the valid email", async function () {

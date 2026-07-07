@@ -1,80 +1,101 @@
-// fill (), click(), textContent(), url, tobeVisible(), haveText(), toBe(), toContain(), toContainText(), allTextContent(), count()
+/*/*
+    Reusable action methods all over the project....
+*/
 
 import { expect, Locator, Page } from "@playwright/test";
 
 export class BasePage {
 
+    // Fill inside the input field
     async fill(locator: Locator, value: string) {
         await locator.isVisible();
         await locator.fill(value);
     }
 
+    // Click the locator
     async click(locator: Locator) {
         await locator.isEnabled();
         await locator.click();
     }
 
+    // GetText from the locator
     async getText(locator: Locator) {
         await locator.isVisible();
         return await locator.textContent();
     }
 
+    // get the current URL
     async getUrl(page: Page) {
         return await page.url();
     }
-
+    
+    // Element to be Visible return boolean
     async elementVisible(locator: Locator) {
         await locator.isVisible();
         return await locator.isVisible();
     }
 
+    // Assertion to HaveText
     async toHaveText(locator: Locator, value: string) {
         await locator.isVisible();
         return await expect(locator).toHaveText(value);
     }
 
+    // Assertion to toBe
     async toBe(locator: Locator, value: string) {
         await locator.isVisible();
         return await expect(locator).toBe(value);
     }
 
+    // To ContainText
     async toContainText(locator: Locator, value: string) {
         await locator.isVisible();
         return await expect(locator).toContainText(value);
     }
+
+    // toContainValue
     async toContain(locator: Locator, value: string) {
         await locator.isVisible();
         return await expect(locator.textContent()).toContain(value);
     }
 
+
+    // Return AlltextContent inside the text 
     async allTextContent(locator: Locator) {
         await locator.isVisible();
         return await locator.allTextContents();
     }
 
+    // return the count of the value
     async count(locator: Locator) {
         await locator.isVisible();
         return await locator.count();
     }
 
+    // click the checkBox
     async checkTheBox(locator: Locator) {
         await locator.isVisible();
         await locator.check();
     }
+
+    // Clear the input field
     async clear(locator: Locator) {
         await locator.isVisible();
         await locator.clear();
     }
 
+    // Return the innerText
     async getInnerText(locator: Locator) {
         await locator.isVisible();
         return await locator.innerText();
     }
 
+    // Return allInnerText
     async allInnerText(locator: Locator) {
         await locator.isVisible();
         return await locator.allInnerTexts();
     }
+
 
     async domClick(locator: Locator) {
         await locator.isVisible();

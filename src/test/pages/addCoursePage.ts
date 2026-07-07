@@ -1,76 +1,73 @@
-import { expect } from '@playwright/test';
-/*/*
-    Add Course Page defines all the locators with reusable methods
-*/
-import { BasePage } from "./BasePage";
-import { Page, Locator } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
+import { BasePage } from './BasePage';
 
+export class AddCourse extends BasePage {
+  private courseManagement: Locator;
+  private addCourse: Locator;
+  private nextBtn: Locator;
 
-export class AddCourse extends BasePage{
+  private clientError: Locator;
+  private typeError: Locator;
+  private modelError: Locator;
+  private categoryError: Locator;
+  private nameError: Locator;
 
-    private courseManagement : Locator
-    private addCourse: Locator
+  private courseImage: Locator;
 
-    private nextbtn : Locator
+  constructor(page: Page) {
+    super(page);
 
-    private clientError: Locator;
-    private typeError : Locator;
-    private modelError: Locator;
-    private categoryError: Locator;
-    private nameError: Locator;
+    this.courseManagement = page.locator("//div[@title='Course Management']");
+    this.addCourse = page.getByRole('button', { name: 'Add Course' });
 
+    this.nextBtn = page.getByRole('button', { name: 'Next' });
 
+    this.clientError = page.getByText('Please select a client');
+    this.typeError = page.getByText('Please select a service type');
+    this.modelError = page.getByText('Please select a service model');
+    this.categoryError = page.getByText('Please select a course category');
+    this.nameError = page.getByText('Please enter a course name');
 
-    constructor(page: Page){
-        super(page);
-        this.courseManagement = page.locator("//div[@title ='Course Management']")
-        this.addCourse = page.locator("//button[text() = 'Add Course']")
-        
+    this.courseImage = page.getByText('Course Image');
+  }
 
-        this.nextbtn = page.locator("//div[@class = 'flex gap-1.5']//button[text() = 'Next']")
+  async commonMethod() {
+    await this.courseManagement.click();
+    await this.addCourse.click();
+  }
 
-        this.clientError = page.locator("//div//span[text() = 'Please select a client']");
+  async clickAddCourse() {
+    await this.addCourse.click();
+  }
 
-        this.typeError = page.locator("//div//span[text() = 'Please select a service type']")
+  async clickNext() {
+    await this.nextBtn.click();
+  }
 
-        this.modelError = page.locator("//div//span[text() = 'Please select a service model']")
-        this.categoryError = page.locator("//div//span[text() = 'Please select a course category']");
+  async validateWarningMessages() {
+    await expect(this.clientError).toBeVisible();
+    await expect(this.typeError).toBeVisible();
+    await expect(this.modelError).toBeVisible();
+    await expect(this.categoryError).toBeVisible();
+    await expect(this.nameError).toBeVisible();
+  }
 
-        this.nameError = page.locator("//div//span[text() = 'Please enter a course name']")
+  async selectDropdown(index: number, value: string) {
+    
+    const dropdown = this.page.locator('button[role="combobox"]').nth(index);
 
+    await dropdown.click();
 
+    await this.page
+        .locator('[role="option"]')
+        .filter({ hasText: value })
+        .first()
+        .click();
+
+    await expect(dropdown).toContainText(value);
     }
 
-    async commonMethod(){
-       await this.courseManagement.click()
-       await this.addCourse.click();
-    }
-
-    async clickAddCourse() {
-        await this.addCourse.click();
-    }
-
-
-
-    async clickNext() {
-        await this.nextbtn.click();
-    }
-
-    async validateWarningMessages(){
-        await expect(this.clientError).toBeVisible();
-        await expect(this.typeError).toBeVisible();
-        await expect(this.modelError).toBeVisible();
-        await expect(this.categoryError).toBeVisible();
-        await expect(this.nameError).toBeVisible();
-    }
-
-
-
-        //     const fileInput = page.locator('input[type="file"]');
-
-        // await fileInput.setInputFiles('tests/files/sample.pdf');
-
-        // await expect(
-        //   page.getByText(/jpeg|jpg|png|webp|accepted/i)
-        // ).toBeVisible();
+  async validateNextPage() {
+    await expect(this.courseImage).toBeVisible();
+  }
 }

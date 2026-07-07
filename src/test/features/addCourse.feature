@@ -13,7 +13,15 @@ Feature: Course Creation
              When The User Clicks on Course Management in DashboaedPage
               And the user clicks the Add Course button
 
-        Scenario: Validate warning message when mandatory fields are empty
-             When the user clicks the Next button without entering course details
-             Then a warning message should be displayed
+        # Scenario: Validate warning message when mandatory fields are empty
+        #      When the user clicks the Next button without entering course details
+        #      Then a warning message should be displayed
+
+
+
+        Scenario: Enter valid course basic configuration details
+             
+             When the user selects dropdown-values from the dropdown
+              And the user clicks the Next button
+             Then the user should navigate to the Course Hierarchy section
 

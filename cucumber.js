@@ -1,0 +1,55 @@
+const { format } = require("node:path");
+
+module.exports = {
+
+    default:{
+
+        requireModule: ["ts-node/register"],
+
+        require:[
+            'src/helper/report.ts',
+            'src/hooks/**/*.ts',
+            'src/world/**/*.ts',
+            'src/test/step-definition/**/*.ts'
+        ],
+
+        paths:['src/test/features/**/*.feature'],
+
+        publishQuiet: true,
+        dryRun: false,
+
+        format:[
+            'progress',
+            'json:reports/cucumber-json/cucumber-report.json',
+            'html:reports/cucumber-html/cucumber-report.html',
+            "rerun:rerun/@rerun.txt"
+        ],
+
+        parallel: 2
+
+    },
+
+    rerun:{
+        requireModule: ["ts-node/register"],
+
+        require:[
+            'src/helper/report.ts',
+            'src/hooks/**/*.ts',
+            'src/world/**/*.ts',
+            'src/test/step-definition/**/*.ts'
+        ],
+
+        paths:['rerun/@rerun.txt'],
+
+
+        format:[
+            'progress',
+            'json:reports/rerun-cucumber-json/cucumber-report.json',
+            'html:reports/rerun-cucumber-html/cucumber-report.html',
+            "rerun:rerun/@rerun.txt"
+        ],
+
+        parallel: 1
+
+    }
+}

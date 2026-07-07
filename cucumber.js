@@ -1,5 +1,3 @@
-const { format } = require("node:path");
-
 module.exports = {
 
     default:{
@@ -21,6 +19,7 @@ module.exports = {
         dryRun: false,
 
         format:[
+            'snippets',
             'progress',
             'json:reports/cucumber-json/cucumber-report.json',
             'html:reports/cucumber-html/cucumber-report.html',

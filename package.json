@@ -17,6 +17,7 @@
   "homepage": "https://lms-smartcliff.vercel.app/lms/pages/admindashboard",
 
   "scripts": {
+    "rishwanth":"cucumber-js --tags @Rishwanth",
     "test": "cucumber-js",
     "test:rerun": "cucumber-js -p rerun",
     "report": "ts-node src/helper/report.ts",

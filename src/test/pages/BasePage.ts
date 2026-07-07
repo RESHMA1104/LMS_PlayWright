@@ -28,7 +28,7 @@ export class BasePage {
     async getUrl(page: Page) {
         return await page.url();
     }
-    
+
     // Element to be Visible return boolean
     async elementVisible(locator: Locator) {
         await locator.isVisible();
@@ -105,5 +105,9 @@ export class BasePage {
     async selectDDOptionByValue(locator: Locator, option: string) {
         await locator.isEnabled();
         await locator.selectOption({ value: option });
+    }
+
+    async pressEnter(locator: Locator) {
+        await locator.press("Enter");
     }
 }

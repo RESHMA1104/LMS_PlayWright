@@ -26,7 +26,7 @@ export class CourseManagementPage extends BasePage {
         await this.click(this.AddCourseStructureBtn);
     }
 
-    async assertCourseManagementUrl() {
+    async assertCourseManagementUrl(url: string) {
         await expect(this.page).toHaveURL(
             /coursestructure\/pedagogy2\?courseId=6a4cced8ba68159dd00ed2e7/,
             { timeout: 15000 }

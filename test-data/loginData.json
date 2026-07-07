@@ -1,4 +1,17 @@
-{
-  "email": "testing@gmail.com",
-  "password": "123"
-}
+[
+  {
+    "loginData": {
+      "email": "testing@gmail.com",
+      "password": "123"
+      }
+  },
+
+  { 
+    "courseEdit":{
+      "CourseName": "Bug-Finder",
+      "Service Model": "HTD",
+      "Course Client": "jamocha"
+    }
+  }
+
+]

@@ -9,6 +9,7 @@ import { LoginPage } from "../pages/loginPage";
 import { DashBoardPage } from "../pages/dashboardpage";
 import { CourseManagementPage } from "../pages/coursemanagementpage";
 import { AddCourse } from "../pages/addCoursePage";
+import { EditPage } from "../pages/EditCoursePage";
 
 // Default Timeout
 setDefaultTimeout(60 * 1000);
@@ -31,6 +32,7 @@ Before(async function (this: BugFinder) {
     this.dashboardPage = new DashBoardPage(this.page);
     this.coursemanagementPage = new CourseManagementPage(this.page);
     this.addCoursePage = new AddCourse(this.page);
+    this.editPage = new EditPage(this.page);
 })
 
 // If the test Failed ScreenShot capture 

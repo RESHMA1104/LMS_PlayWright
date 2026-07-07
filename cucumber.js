@@ -8,7 +8,7 @@ module.exports = {
 
         require:[
             'src/helper/report.ts',
-            'src/hooks/**/*.ts',
+            'src/test/hooks/**/*.ts',
             'src/world/**/*.ts',
             'src/test/step-definition/**/*.ts'
         ],

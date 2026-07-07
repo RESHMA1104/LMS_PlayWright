@@ -9,7 +9,7 @@ module.exports = {
         requireModule: ["ts-node/register"],
 
         require:[
-           'src/helper/report.ts',
+            //'src/helper/report.ts',
             'src/test/hooks/**/*.ts',
             'src/world/**/*.ts',
             'src/test/step-definition/**/*.ts'

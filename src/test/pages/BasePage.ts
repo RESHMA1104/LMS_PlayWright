@@ -6,6 +6,11 @@ import { expect, Locator, Page } from "@playwright/test";
 
 export class BasePage {
 
+    // constructor to add Pages inside child class
+    constructor(page: Page){
+
+    }
+
     // Fill inside the input field
     async fill(locator: Locator, value: string) {
         await locator.isVisible();

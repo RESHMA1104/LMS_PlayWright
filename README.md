@@ -151,10 +151,6 @@ reports/html-report
 
 ---
 
-## 📄 License
-
-MIT License
-
 ---
 
 <p align="center">

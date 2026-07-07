@@ -5,7 +5,7 @@
 import { BugFinder } from "../../world/bug_finder";
 import { Browser, chromium } from "@playwright/test";
 import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from "@cucumber/cucumber";
-import { AddCourse } from "../pages/addCoursePage";
+import { LoginPage } from "../pages/loginPage";
 
 // Default Timeout
 setDefaultTimeout(60* 1000);
@@ -25,7 +25,7 @@ Before(async function (this:BugFinder) {
     this.browserContext = await this.browser.newContext();
     this.page = await this.browserContext.newPage();
 
-    this.addCourse = new AddCourse(this.page);
+    this.loginPage=new LoginPage(this.page);
 })
 
 // If the test Failed ScreenShot capture 

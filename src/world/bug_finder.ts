@@ -4,8 +4,7 @@
 
 import { setWorldConstructor, World } from '@cucumber/cucumber';
 import { Browser, BrowserContext, Page} from '@playwright/test';
-import { AddCourse } from '../test/pages/addCoursePage';
-
+import { LoginPage } from '../test/pages/loginPage';
 
 // CustomWorld extends World
 export class BugFinder extends World{
@@ -13,7 +12,7 @@ export class BugFinder extends World{
     browserContext!:BrowserContext;
     page!:Page;
 
-    addCourse !: AddCourse
+    loginPage!:LoginPage;
 }
 
 

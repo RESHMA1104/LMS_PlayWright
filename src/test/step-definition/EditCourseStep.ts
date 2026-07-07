@@ -35,10 +35,10 @@ Then('user should see the course updated successfully message', async function (
     await this.editPage.SuccessMsg();
 });
 
-When('user changes the course category', async function () {
-  
+When('user changes the course category', async function (this:BugFinder) {
+    await this.editPage.CourseCat();
 });
 
-Then('user should see the error message', async function () {
-  
+Then('user should see the error message', async function (this:BugFinder) {
+    await this.editPage.MsgValidation();
 })

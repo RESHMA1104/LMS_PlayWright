@@ -8,7 +8,7 @@ export class BasePage {
     protected page: Page;
 
     // constructor to add Pages inside child class
-    constructor(page: Page){
+    constructor(page: Page) {
         this.page = page;
     }
 
@@ -57,7 +57,7 @@ export class BasePage {
 
     // To ContainText
     async toContainText(locator: Locator, value: string) {
-        await locator.isVisible();
+        await locator.isVisible({ timeout: 60000 });
         return await expect(locator).toContainText(value);
     }
 
@@ -110,7 +110,7 @@ export class BasePage {
         await locator.evaluate((element: HTMLElement) => element.click());
     }
 
-    
+
     async selectDDOptionByValue(locator: Locator, option: string) {
         await locator.isEnabled();
         await locator.selectOption({ value: option });
@@ -121,14 +121,14 @@ export class BasePage {
     }
 
     // Return True  when the locator is toBeVisible
-    async toBeVisible(locator: Locator){
+    async toBeVisible(locator: Locator) {
         return await expect(locator).toBeVisible();
     }
 
-     async waitForDownload(page: Page,clickLocator: Locator): Promise<Download> {
+    async waitForDownload(page: Page, clickLocator: Locator): Promise<Download> {
         const downloadPromise = page.waitForEvent("download");
         await this.click(clickLocator);
         return await downloadPromise;
     }
-     
+
 }

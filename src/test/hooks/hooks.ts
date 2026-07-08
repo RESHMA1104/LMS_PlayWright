@@ -24,8 +24,9 @@ let browser: Browser;
 
 // Browser launch the application 
 BeforeAll(async () => {
+
     browser = await chromium.launch({
-        headless: true
+        headless: false
     })
 })
 
@@ -42,7 +43,7 @@ Before(async function (this: BugFinder) {
     this.ReportDownload = new ReportDownload(this.page)
     this.addCoursePage = new AddCourse(this.page);
     this.editPage = new EditPage(this.page);
-    this.courseFilter=new CourseFilter(this.page);
+    this.courseFilter = new CourseFilter(this.page);
     this.AddSimilarCourses = new AddSimilarCourse(this.page);
     this.courseFilter = new CourseFilter(this.page);
 })

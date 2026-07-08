@@ -12,6 +12,7 @@ import {ReportDownload} from "../pages/PrintReportPage"
 import { AddCourse } from "../pages/addCoursePage";
 import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
+import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 
 // Default Timeout
 setDefaultTimeout(60 * 1000);
@@ -37,6 +38,7 @@ Before(async function (this: BugFinder) {
     this.addCoursePage = new AddCourse(this.page);
     this.editPage = new EditPage(this.page);
     this.courseFilter=new CourseFilter(this.page);
+    this.AddSimilarCourses = new AddSimilarCourse(this.page);
 })
 
 // If the test Failed ScreenShot capture 

@@ -25,3 +25,10 @@ Feature: Course Creation
               And the user clicks the Next button
              Then the user should navigate to the Course Hierarchy section
 
+
+
+        Scenario: Configure course hierarchy Pedagogy
+            Given the user has completed the course basic configuration
+              And the user is on the Course Hierarchy section
+               
+

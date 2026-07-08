@@ -102,12 +102,13 @@ export class BasePage {
         return await locator.allInnerTexts();
     }
 
-
+    // DOM Click 
     async domClick(locator: Locator) {
         await locator.isVisible();
         await locator.evaluate((element: HTMLElement) => element.click());
     }
 
+    
     async selectDDOptionByValue(locator: Locator, option: string) {
         await locator.isEnabled();
         await locator.selectOption({ value: option });
@@ -115,5 +116,10 @@ export class BasePage {
 
     async pressEnter(locator: Locator) {
         await locator.press("Enter");
+    }
+
+    // Return True  when the locator is toBeVisible
+    async toBeVisible(locator: Locator){
+        return await expect(locator).toBeVisible();
     }
 }

@@ -2,7 +2,7 @@
     Reusable action methods all over the project....
 */
 
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Locator, Page, Download } from "@playwright/test";
 
 export class BasePage {
     protected page: Page;
@@ -12,6 +12,8 @@ export class BasePage {
         this.page = page;
     }
 
+
+
     // Fill inside the input field
     async fill(locator: Locator, value: string) {
         await locator.isVisible();
@@ -20,7 +22,7 @@ export class BasePage {
 
     // Click the locator
     async click(locator: Locator) {
-        await locator.isEnabled();
+        await locator.isVisible({timeout:30000});
         await locator.click();
     }
 
@@ -43,7 +45,7 @@ export class BasePage {
 
     // Assertion to HaveText
     async toHaveText(locator: Locator, value: string) {
-        await locator.isVisible();
+        await locator.isVisible({timeout:30000});
         return await expect(locator).toHaveText(value);
     }
 
@@ -55,7 +57,7 @@ export class BasePage {
 
     // To ContainText
     async toContainText(locator: Locator, value: string) {
-        await locator.isVisible();
+        await locator.isVisible({timeout:30000});
         return await expect(locator).toContainText(value);
     }
 
@@ -117,8 +119,15 @@ export class BasePage {
         await locator.press("Enter");
     }
 
-    async selectDropdown(dropdown: Locator, option: string) {
+    async selectDropdownValues(dropdown: Locator, option: string) {
         await dropdown.click();
         await this.page.getByText(option, { exact: true }).click();
-}
+    }
+
+     async waitForDownload(page: Page,clickLocator: Locator): Promise<Download> {
+        const downloadPromise = page.waitForEvent("download");
+        await this.click(clickLocator);
+        return await downloadPromise;
+    }
+     
 }

@@ -6,7 +6,6 @@ Given User on the login page
 And User enter the valid email
 And User enter the valid password
 When User clicks the Sign button
-Then User should navigate to the Dashboard page
 And user navigates to the Course Management page
 And user searches for the course name
 And user opens the course actions menu

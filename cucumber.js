@@ -19,13 +19,13 @@ module.exports = {
         dryRun: false,
 
         format:[
-            'snippets',
+            'progress',
             'json:reports/cucumber-json/cucumber-report.json',
             'html:reports/cucumber-html/cucumber-report.html',
             "rerun:rerun/@rerun.txt"
         ],
 
-        parallel: 2
+        parallel: 1
 
     },
 

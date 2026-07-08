@@ -5,6 +5,12 @@
 import { expect, Locator, Page, Download } from "@playwright/test";
 
 export class BasePage {
+    protected page: Page;
+
+    // constructor to add Pages inside child class
+    constructor(page: Page){
+        this.page = page;
+    }
 
 
 

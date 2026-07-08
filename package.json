@@ -2,22 +2,18 @@
   "name": "lms-playwright-automation",
   "version": "1.0.0",
   "description": "End-to-End Automation Testing Framework for the LMS Portal using Playwright, Cucumber BDD, and TypeScript.",
-
   "private": true,
-
   "repository": {
     "type": "git",
     "url": "https://github.com/RESHMA1104/LMS_PlayWright.git"
   },
-
   "bugs": {
     "url": "https://github.com/RESHMA1104/LMS_PlayWright/issues"
   },
-
   "homepage": "https://lms-smartcliff.vercel.app/lms/pages/admindashboard",
-
   "scripts": {
-    "rishwanth":"cucumber-js --tags @Rishwanth",
+    "rishwanth": "cucumber-js --tags @Rishwanth",
+    "prasanna": "cucumber-js --tags @Prasanna",
     "test": "cucumber-js",
     "test:rerun": "cucumber-js -p rerun",
     "report": "ts-node src/helper/report.ts",
@@ -25,33 +21,35 @@
     "debug": "set DEBUG=pw:api&& cucumber-js",
     "ci": "npm run test && npm run report"
   },
-
   "keywords": [
-    "playwright","typescript","cucumber","bdd","automation","e2e","lms","testing"
+    "playwright",
+    "typescript",
+    "cucumber",
+    "bdd",
+    "automation",
+    "e2e",
+    "lms",
+    "testing"
   ],
-
   "author": "Reshma, Prasanna Venkatesh, Rishwanth, Tamilarasu, Haritha",
-
   "license": "MIT",
-
   "type": "commonjs",
-
   "engines": {
     "node": ">=20"
   },
-
   "devDependencies": {
     "@cucumber/cucumber": "^12.9.0",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.1.0",
+    "@types/winston": "^2.4.4",
     "csv-parse": "^7.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.2"
   },
-
   "dependencies": {
     "dotenv": "^17.4.2",
     "multiple-cucumber-html-reporter": "^3.8.0",
-    "@types/winston": "^2.4.4"
+    "winston": "^3.19.0",
+    "xlsx": "^0.18.5"
   }
 }

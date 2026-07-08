@@ -8,6 +8,8 @@ import { LoginPage } from '../test/pages/loginPage';
 import type { DashBoardPage } from '../test/pages/dashboardpage';
 import type { CourseManagementPage } from '../test/pages/coursemanagementpage';
 import { ReportDownload } from '../test/pages/PrintReportPage';
+import type { AddCourse } from '../test/pages/addCoursePage';
+import { EditPage } from '../test/pages/EditCoursePage';
 
 // CustomWorld extends World
 export class BugFinder extends World {
@@ -18,6 +20,8 @@ export class BugFinder extends World {
     dashboardPage!: DashBoardPage;
     coursemanagementPage!: CourseManagementPage;
      ReportDownload!: ReportDownload;
+    addCoursePage!: AddCourse;
+    editPage!: EditPage;
 }
 
 

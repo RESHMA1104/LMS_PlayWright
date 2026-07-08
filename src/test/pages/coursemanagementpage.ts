@@ -9,7 +9,7 @@ export class CourseManagementPage extends BasePage {
 
 
     constructor(page: Page) {
-        super();
+        super(page);
         this.page = page;
         this.searchBarCM = page.locator('//input[@data-slot="input"]');
         this.AddCourseStructureBtn = page.locator('(//span[text()="Bug-Finder"]/following::td/child::span/child::div/child::button)[1]');
@@ -26,7 +26,7 @@ export class CourseManagementPage extends BasePage {
         await this.click(this.AddCourseStructureBtn);
     }
 
-    async assertCourseManagementUrl() {
+    async assertCourseManagementUrl(url: string) {
         await expect(this.page).toHaveURL(
             /coursestructure\/pedagogy2\?courseId=6a4cced8ba68159dd00ed2e7/,
             { timeout: 15000 }

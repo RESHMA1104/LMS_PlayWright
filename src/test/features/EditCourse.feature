@@ -1,3 +1,4 @@
+@Reshma
 Feature: Reshma_07-july-2026 Edit Existing Course
 
 Background:
@@ -21,7 +22,6 @@ When user changes the course category
 And user clicks the Next button
 Then user should see the error message
 
-@Reshma
 Scenario Outline: Edit the course hierarchy and pedagogy details
 Given user has completed the Basic Configuration page
 When user clicks the Next button

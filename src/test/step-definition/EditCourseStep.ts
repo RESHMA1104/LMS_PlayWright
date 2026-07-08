@@ -1,5 +1,5 @@
 import { BugFinder } from "../../world/bug_finder";
-import { When, Then} from "@cucumber/cucumber";
+import { Given, When, Then} from "@cucumber/cucumber";
 
 Then('user navigates to the Course Management page', async function (this:BugFinder) {
     await this.editPage.CoursePage();
@@ -41,4 +41,20 @@ When('user changes the course category', async function (this:BugFinder) {
 
 Then('user should see the error message', async function (this:BugFinder) {
     await this.editPage.MsgValidation();
-})
+});
+
+Given('user has completed the Basic Configuration page', async function (this:BugFinder) {
+    await this.editPage.CourseBasicPge();
+});
+
+When('user selects {string} in the I Do pedagogy', async function (this:BugFinder, ido) {
+    await this.editPage.selectIDo(ido);
+});
+
+When('user selects {string} in the We Do pedagogy', async function (this:BugFinder,wedo) {
+    await this.editPage.selectWeDo(wedo);
+});
+
+When('user selects {string} in the You Do pedagogy', async function (this:BugFinder,youdo) {
+    await this.editPage.selectYouDo(youdo);
+});

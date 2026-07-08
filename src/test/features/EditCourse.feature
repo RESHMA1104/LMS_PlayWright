@@ -1,4 +1,3 @@
-@Reshma
 Feature: Reshma_07-july-2026 Edit Existing Course
 
 Background:
@@ -21,3 +20,18 @@ Scenario: Validate mandatory course name field
 When user changes the course category
 And user clicks the Next button
 Then user should see the error message
+
+@Reshma
+Scenario Outline: Edit the course hierarchy and pedagogy details
+Given user has completed the Basic Configuration page
+When user clicks the Next button
+And user selects "<IDo>" in the I Do pedagogy
+And user selects "<WeDo>" in the We Do pedagogy
+And user selects "<YouDo>" in the You Do pedagogy
+And user clicks the Preview and Update button
+Then user should see the course updated successfully message
+
+Examples:
+  | IDo               |  WeDo          |   YouDo        | 
+  | Live Classes      |   Lab          |   Assesments   |
+  | kps               |   Practical    |   Exercise     |

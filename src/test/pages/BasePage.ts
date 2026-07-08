@@ -2,7 +2,7 @@
     Reusable action methods all over the project....
 */
 
-import { expect, Locator, Page } from "@playwright/test";
+import { expect, Locator, Page, Download } from "@playwright/test";
 
 export class BasePage {
     protected page: Page;
@@ -11,6 +11,8 @@ export class BasePage {
     constructor(page: Page){
         this.page = page;
     }
+
+
 
     // Fill inside the input field
     async fill(locator: Locator, value: string) {
@@ -122,4 +124,11 @@ export class BasePage {
     async toBeVisible(locator: Locator){
         return await expect(locator).toBeVisible();
     }
+
+     async waitForDownload(page: Page,clickLocator: Locator): Promise<Download> {
+        const downloadPromise = page.waitForEvent("download");
+        await this.click(clickLocator);
+        return await downloadPromise;
+    }
+     
 }

@@ -8,7 +8,10 @@ import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from "@
 import { LoginPage } from "../pages/loginPage";
 import { DashBoardPage } from "../pages/dashboardpage";
 import { CourseManagementPage } from "../pages/coursemanagementpage";
+import {ReportDownload} from "../pages/PrintReportPage"
 import { AddCourse } from "../pages/addCoursePage";
+import { EditPage } from "../pages/EditCoursePage";
+import { CourseFilter } from "../pages/courseFilterPage";
 
 // Default Timeout
 setDefaultTimeout(60 * 1000);
@@ -18,7 +21,7 @@ let browser: Browser;
 // Browser launch the application 
 BeforeAll(async () => {
     browser = await chromium.launch({
-        headless: true
+        headless: false
     })
 })
 
@@ -30,7 +33,10 @@ Before(async function (this: BugFinder) {
     this.loginPage = new LoginPage(this.page);
     this.dashboardPage = new DashBoardPage(this.page);
     this.coursemanagementPage = new CourseManagementPage(this.page);
+    this.ReportDownload = new ReportDownload(this.page)
     this.addCoursePage = new AddCourse(this.page);
+    this.editPage = new EditPage(this.page);
+    this.courseFilter=new CourseFilter(this.page);
 })
 
 // If the test Failed ScreenShot capture 

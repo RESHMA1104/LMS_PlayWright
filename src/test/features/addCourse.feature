@@ -6,8 +6,8 @@ Feature: Course Creation
 
         Background:
             Given User on the login page
-              And User enter the valid email
-              And User enter the valid password
+             When User enter the valid email
+             When User enter the valid password
              When User clicks the Sign button
              Then User should navigate to the Dashboard page
              When The User Clicks on Course Management in DashboaedPage
@@ -24,4 +24,11 @@ Feature: Course Creation
              When the user selects dropdown-values from the dropdown
               And the user clicks the Next button
              Then the user should navigate to the Course Hierarchy section
+
+
+
+        Scenario: Configure course hierarchy Pedagogy
+            Given the user has completed the course basic configuration
+              And the user is on the Course Hierarchy section
+
 

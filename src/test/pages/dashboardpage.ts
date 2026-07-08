@@ -1,21 +1,18 @@
-import type { Locator, Page } from "@playwright/test";
+import { expect, type Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
-
 
 export class DashBoardPage extends BasePage {
     readonly page: Page;
-    readonly corseManagementLinkDrawer: Locator
+    readonly corseManagementLinkDrawer: Locator;
 
     constructor(page: Page) {
         super(page);
         this.page = page;
-        this.corseManagementLinkDrawer = page.locator('//div[@title="Course Management"]')
-
+        this.corseManagementLinkDrawer = page.locator('[title="Course Management"]');
     }
 
     async clickCourseManagementDrawer() {
-        await this.click(this.corseManagementLinkDrawer);
+        await expect(this.corseManagementLinkDrawer).toBeVisible({ timeout: 30000 });
+        await this.corseManagementLinkDrawer.click();
     }
-
-
 }

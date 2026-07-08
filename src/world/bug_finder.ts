@@ -6,8 +6,9 @@
 import { setWorldConstructor, World } from '@cucumber/cucumber';
 import { Browser, BrowserContext, Page } from '@playwright/test';
 import { LoginPage } from '../test/pages/loginPage';
-import type { DashBoardPage } from '../test/pages/dashboardpage';
-import type { CourseManagementPage } from '../test/pages/coursemanagementpage';
+import { DashBoardPage } from '../test/pages/dashboardpage';
+import { CourseManagementPage } from '../test/pages/coursemanagementpage';
+import { AddCorseStructurePage } from '../test/pages/addcoursestructurepage';
 import { ReportDownload } from '../test/pages/PrintReportPage';
 import type { AddCourse } from '../test/pages/addCoursePage';
 import { EditPage } from '../test/pages/EditCoursePage';
@@ -21,11 +22,14 @@ export class BugFinder extends World {
     loginPage!: LoginPage;
     dashboardPage!: DashBoardPage;
     coursemanagementPage!: CourseManagementPage;
-     ReportDownload!: ReportDownload;
+    addcoursestructurePage!: AddCorseStructurePage;
+    ReportDownload!: ReportDownload;
     addCoursePage!: AddCourse;
     editPage!: EditPage;
     courseFilter!:CourseFilter;
     AddSimilarCourses! :AddSimilarCourse
+    
+
 }
 
 

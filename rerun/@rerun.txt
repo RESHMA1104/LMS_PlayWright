@@ -1,1 +1,5 @@
-src\test\features\AddSimilarCourses.feature:22
+src\test\features\EditCourse.feature:15
+src\test\features\PrintReport.feature:12
+src\test\features\addCourse.feature:30
+src\test\features\addcoursestructure.feature:11
+src\test\features\login.feature:7:21

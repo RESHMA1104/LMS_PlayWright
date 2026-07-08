@@ -8,6 +8,7 @@ import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from "@
 import { LoginPage } from "../pages/loginPage";
 import { DashBoardPage } from "../pages/dashboardpage";
 import { CourseManagementPage } from "../pages/coursemanagementpage";
+import { AddCorseStructurePage } from "../pages/addcoursestructurepage";
 
 // Default Timeout
 setDefaultTimeout(60 * 1000);
@@ -17,7 +18,7 @@ let browser: Browser;
 // Browser launch the application 
 BeforeAll(async () => {
     browser = await chromium.launch({
-        headless: true
+        headless: false
     })
 })
 
@@ -29,6 +30,7 @@ Before(async function (this: BugFinder) {
     this.loginPage = new LoginPage(this.page);
     this.dashboardPage = new DashBoardPage(this.page);
     this.coursemanagementPage = new CourseManagementPage(this.page);
+    this.addcoursestructurePage = new AddCorseStructurePage(this.page);
 
 })
 

@@ -19,7 +19,6 @@ export class AddCourse extends BasePage {
 
     this.courseManagement = page.locator("//div[@title='Course Management']");
     this.addCourse = page.getByRole('button', { name: 'Add Course' });
-
     this.nextBtn = page.getByRole('button', { name: 'Next' });
 
     this.clientError = page.getByText('Please select a client');
@@ -32,7 +31,7 @@ export class AddCourse extends BasePage {
   }
 
   async commonMethod() {
-    await this.click(this.courseManagement)
+    await this.click(this.courseManagement);
     await this.click(this.addCourse);
   }
 
@@ -53,21 +52,50 @@ export class AddCourse extends BasePage {
   }
 
   async selectDropdown(index: number, value: string) {
-    
     const dropdown = this.page.locator('button[role="combobox"]').nth(index);
 
     await this.click(dropdown);
 
     await this.page
-        .locator('[role="option"]')
-        .filter({ hasText: value })
-        .first()
-        .click();
+      .locator('[role="option"]')
+      .filter({ hasText: value })
+      .first()
+      .click();
 
     await this.toContainText(dropdown, value);
-    }
+  }
 
   async validateNextPage() {
     await this.toBeVisible(this.courseImage);
+  }
+
+ async selectMultiDropdownPedagogy(index: number, value: string) {
+  const dropdown = this.page
+    .locator('button[role="combobox"]')
+    .nth(index);
+
+    await dropdown.click();
+
+    const listBox = this.page.locator('[role="listbox"]').last();
+
+    const label = listBox
+      .locator('label')
+      .filter({ hasText: value })
+      .first();
+
+      await label.click();
+
+      await expect(
+      this.page.getByText(new RegExp(`\\d+\\.\\s*${value}`))
+      ).toBeVisible({ timeout: 10000 });
+  }
+
+
+  async validatePedagogyValue(value: string) {
+  await expect(
+      this.page.locator('span.font-medium')
+        .filter({ hasText: value })
+        .last()
+    ).toBeVisible();
   }
 }

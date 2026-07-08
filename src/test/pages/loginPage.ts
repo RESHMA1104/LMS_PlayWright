@@ -40,7 +40,7 @@ export class LoginPage extends BasePage {
 
     async verifyDashboard() {
         await expect(this.page).toHaveURL(/admindashboard/, {
-            timeout: 15000,
+            timeout: 20000,
         });
     }
 

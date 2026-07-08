@@ -27,8 +27,10 @@ Feature: Course Creation
 
 
 
-        Scenario: Configure course hierarchy Pedagogy
+        Scenario: Configure course hierarchy pedagogy
             Given the user has completed the course basic configuration
               And the user is on the Course Hierarchy section
+             When the user selects pedagogy values for I Do, We Do, and You Do
+             Then the selected pedagogy values should be displayed correctly
 
 

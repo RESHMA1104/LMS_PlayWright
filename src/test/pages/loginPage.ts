@@ -3,17 +3,14 @@ import { BasePage } from "./BasePage";
 
 export class LoginPage extends BasePage {
 
-    readonly page: Page;
+    private txtEmail: Locator;
+    private txtPassword: Locator;
+    private btnSignIn: Locator;
+    private lblErrorMessage: Locator;
 
-    readonly txtEmail: Locator;
-    readonly txtPassword: Locator;
-    readonly btnSignIn: Locator;
-    readonly lblErrorMessage: Locator;
 
     constructor(page: Page) {
-        super();
-
-        this.page = page;
+        super(page);
 
         this.txtEmail = page.locator("//input[@type='email']");
         this.txtPassword = page.locator("//input[@type='password']");
@@ -43,7 +40,7 @@ export class LoginPage extends BasePage {
 
     async verifyDashboard() {
         await expect(this.page).toHaveURL(/admindashboard/, {
-            timeout: 15000,
+            timeout: 20000,
         });
     }
 

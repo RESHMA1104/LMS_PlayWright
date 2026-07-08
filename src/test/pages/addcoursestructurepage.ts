@@ -3,19 +3,18 @@ import { BasePage } from "./BasePage";
 
 
 export class AddCorseStructurePage extends BasePage {
-    readonly page: Page;
-    readonly addModuleBtn: Locator;
-    readonly moduleTitle: Locator;
-    readonly moduleDescription: Locator;
-    readonly moduleSkillone: Locator;
-    readonly moduleSelectAllSkill: Locator;
-    readonly moduleSkillTwo: Locator;
-    readonly AddModuleSubmitBtn: Locator;
-    readonly moduleSuccessMsg: Locator;
+    private addModuleBtn: Locator;
+    private moduleTitle: Locator;
+    private moduleDescription: Locator;
+    private moduleSkillone: Locator;
+    private moduleSelectAllSkill: Locator;
+    private moduleSkillTwo: Locator;
+    private AddModuleSubmitBtn: Locator;
+    private moduleSuccessMsg: Locator;
 
 
     constructor(page: Page) {
-        super();
+        super(page);
         this.page = page;
         this.addModuleBtn = page.locator('//button[@title="Add module"]');
         this.moduleTitle = page.locator('//textarea[@placeholder="Enter title..."]');

@@ -6,7 +6,7 @@ export class DashBoardPage extends BasePage {
     readonly corseManagementLinkDrawer: Locator;
 
     constructor(page: Page) {
-        super();
+        super(page);
         this.page = page;
         this.corseManagementLinkDrawer = page.locator('[title="Course Management"]');
     }

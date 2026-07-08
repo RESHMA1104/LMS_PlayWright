@@ -1,3 +1,4 @@
+@haritha
 Feature: Haritha_07-july-2026 Login functionality
 
   Background:

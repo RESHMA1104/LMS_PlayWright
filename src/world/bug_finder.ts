@@ -10,7 +10,7 @@ import type { CourseManagementPage } from '../test/pages/coursemanagementpage';
 import { ReportDownload } from '../test/pages/PrintReportPage';
 import type { AddCourse } from '../test/pages/addCoursePage';
 import { EditPage } from '../test/pages/EditCoursePage';
-
+import { CourseFilter } from '../test/pages/courseFilterPage';
 // CustomWorld extends World
 export class BugFinder extends World {
     browser!: Browser;
@@ -22,6 +22,7 @@ export class BugFinder extends World {
      ReportDownload!: ReportDownload;
     addCoursePage!: AddCourse;
     editPage!: EditPage;
+    courseFilter!:CourseFilter;
 }
 
 

@@ -12,7 +12,7 @@ export class CourseFilter extends BasePage {
     this.txtSearch = page.locator(
       "//input[@placeholder='Search courses, codes, clients, or categories...']",
     );
-    this.courseNames = page.locator("//table/tbody/tr/td[3]//button/span[1]");4
+    this.courseNames = page.locator("//table/tbody/tr/td[3]//button/span[1]");
     this.courseCodes = page.locator("//table/tbody/tr/td[3]//button/span[2]");
     this.coursemangement = page.locator("//div[@title='Course Management']");
   }

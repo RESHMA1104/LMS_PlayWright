@@ -6,19 +6,19 @@ Given("User on the login page", async function (this:BugFinder) {
     await this.page.goto(config.baseUrl);
 });
 
-Given("User enter the valid email", async function (this:BugFinder) {
+When("User enter the valid email", async function (this:BugFinder) {
     await this.loginPage.enterEmail(loginData.loginDetails.email);
 });
 
-Given("User enter the valid password", async function (this:BugFinder) {
+When("User enter the valid password", async function (this:BugFinder) {
     await this.loginPage.enterPassword(loginData.loginDetails.password);
 });
 
-Given("User enter the email {string}", async function (this:BugFinder,email: string) {
+When("User enter the email {string}", async function (this:BugFinder,email: string) {
      await this.loginPage.enterEmail(email);
 });
 
-Given("User enter the password {string}", async function (this:BugFinder,password: string) {
+When("User enter the password {string}", async function (this:BugFinder,password: string) {
     await this.loginPage.enterPassword(password);
 });
 

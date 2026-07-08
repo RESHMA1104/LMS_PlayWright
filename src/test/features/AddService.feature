@@ -15,5 +15,11 @@ Feature: Tamilarasu_08_07_2026 Adding Course Structure
     Then A pop notification will come for Service successfully created
 
     Examples:
-      | Service Name       | Description                      |
-      | Automation Test | Testing with the playwright BDD..  |
+      | Service Name    | Description                       |
+      | Automation Test | Testing with the playwright BDD.. |
+@Service1
+  Scenario: Add a New Service with empty fields
+    When the user click on the Dynamic field Setting
+    And Click on Add Service
+    And Click on the Create Service
+    Then The user did not see the notification

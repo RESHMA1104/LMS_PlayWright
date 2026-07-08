@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
 export class AddService extends BasePage {
-
+    //private Slidebar: Locator
     private DynamicField: Locator;
     private AddServiceBtn: Locator;
     private ServiceName: Locator;
@@ -12,8 +12,8 @@ export class AddService extends BasePage {
 
     constructor(page: Page) {
         super(page);
-
-        this.DynamicField = page.locator("//div[@title='Dynamic Field Settings']//div[@class='p-1.5']//*[name()='svg']");
+        //this.Slidebar = page.locator('//div[@title="Dynamic Field Settings"]')
+        this.DynamicField = page.locator("//div[@title='Dynamic Field Settings']");
         this.AddServiceBtn = page.locator("//h3[text()='Service Management']/parent::div/parent::div/following-sibling::button");
         this.ServiceName = page.locator("//input[contains(@placeholder,'Software Development')]");
         this.Description = page.locator("//textarea[@placeholder='Describe the service...']");
@@ -39,9 +39,15 @@ export class AddService extends BasePage {
 
     async CreateingServiceing() {
         await this.click(this.CreateService);
+
     }
 
     async VerifyServiceCreatedPopup() {
         await expect(this.SuccessPopup).toBeVisible();
     }
+
+    async VerifyNotificationNotDisplayed() {
+    await expect(this.SuccessPopup).not.toBeVisible();
+    }
 }
+

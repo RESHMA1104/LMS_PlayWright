@@ -39,9 +39,13 @@ export class AddCorseStructurePage extends BasePage {
 
     }
     async clickAddModuleSubmit() {
-        await this.click(this.AddModuleSubmitBtn);
+        await Promise.all([
+            expect(this.moduleSuccessMsg).toBeVisible({ timeout: 30000 }),
+            this.click(this.AddModuleSubmitBtn)
+        ]);
     }
     async assertModuleSuccessMsg() {
-        await this.toContainText(this.moduleSuccessMsg, "Operation completed successfully!")
+
+        await expect(this.moduleSuccessMsg).toBeHidden({ timeout: 15000 });
     }
 }

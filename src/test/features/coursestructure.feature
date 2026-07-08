@@ -4,8 +4,8 @@ Feature: Rishwanth_07_07_2026 Adding Course Structure
 
   Background:
     Given User on the login page
-    And User enter the valid email
-    And User enter the valid password
+    When User enter the valid email
+    When User enter the valid password
     When User clicks the Sign button
 
   Scenario: To Check Whether the Clicking of Add Course Structure button Redirects to Add Course Structure page

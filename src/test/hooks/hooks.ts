@@ -24,7 +24,7 @@ let browser: Browser;
 // Browser launch the application 
 BeforeAll(async () => {
     browser = await chromium.launch({
-        headless: false
+        headless: true
     })
 })
 

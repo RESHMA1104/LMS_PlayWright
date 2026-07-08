@@ -2,11 +2,10 @@
 Feature: Reshma_07-july-2026 Edit Existing Course
 
 Background:
-Given user is on the Login page
-And user enters a valid email address
-And user enters a valid password
-When user clicks the Sign In button
-Then user should be navigated to the Dashboard page
+Given User on the login page
+When User enter the valid email
+When User enter the valid password
+When User clicks the Sign button
 And user navigates to the Course Management page
 And user searches for the course name
 And user opens the course actions menu
@@ -17,3 +16,8 @@ When user updates the required course details
 And user clicks the Next button
 And user clicks the Preview and Update button
 Then user should see the course updated successfully message
+
+Scenario: Validate mandatory course name field
+When user changes the course category
+And user clicks the Next button
+Then user should see the error message

@@ -12,6 +12,7 @@ export class AddCourse extends BasePage {
   private categoryError: Locator;
   private nameError: Locator;
 
+  
   private courseImage: Locator;
 
   constructor(page: Page) {

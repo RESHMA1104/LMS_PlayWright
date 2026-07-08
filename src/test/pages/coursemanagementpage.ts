@@ -16,7 +16,6 @@ export class CourseManagementPage extends BasePage {
 
     }
 
-
     async enterSearchValue(value: string) {
         await this.fill(this.searchBarCM, value);
         await this.pressEnter(this.searchBarCM);
@@ -27,9 +26,7 @@ export class CourseManagementPage extends BasePage {
     }
 
     async assertCourseManagementUrl(url: string) {
-        await expect(this.page).toHaveURL(
-            /coursestructure\/pedagogy2\?courseId=6a4cced8ba68159dd00ed2e7/,
-            { timeout: 15000 }
-        );
+        const currentUrl = await this.getUrl(this.page);
+        expect(currentUrl).toContain(url);
     }
 }

@@ -2,16 +2,17 @@
     "loginDetails": {
       "email": "testing2@gmail.com",
       "password": "123"
-      },
-      "courseEdit":{
-        "CourseName": "Bug-Finder",
-        "Service Model": "TD",
-        "Course Client": "jamocha",
-        "Success": "Course updated successfully"
-      },
+    },
+    "courseEdit":{
+      "CourseName": "Bug-Finder",
+      "Service Model": "TD",
+      "Course Client": "jamocha",
+      "Success": "Course updated successfully"
+    },
       
-      "courseValidation": {
-        "CourseCategory": "LMS testing",
-        "ValidationMessage": "Please enter a course name"
-      }
+    "courseValidation": {
+      "CourseCategory": "LMS testing",
+      "ValidationMessage": "Please enter a course name"
+    }
 }
+

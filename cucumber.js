@@ -1,55 +1,51 @@
 module.exports = {
-
-    default:{
-        formatOptions: {
+  default: {
+    formatOptions: {
       snippetInterface: "async-await"
     },
-        requireModule: ["ts-node/register"],
 
-        require:[
-            //'src/helper/report.ts',
-            'src/test/hooks/**/*.ts',
-            'src/world/**/*.ts',
-            'src/test/step-definition/**/*.ts'
-        ],
+    requireModule: ["ts-node/register"],
 
-        paths:['src/test/features/**/*.feature'],
+    require: [
+      'src/test/hooks/**/*.ts',
+      'src/world/**/*.ts',
+      'src/test/step-definition/**/*.ts'
+    ],
 
-        publishQuiet: true,
-        dryRun: false,
+    paths: ['src/test/features/**/*.feature'],
 
-        format:[
-            'progress',
-            'json:reports/cucumber-json/cucumber-report.json',
-            'html:reports/cucumber-html/cucumber-report.html',
-            "rerun:rerun/@rerun.txt"
-        ],
+    publishQuiet: true,
+    dryRun: false,
 
-        parallel: 1
+    format: [
+      'snippets',
+      'progress',
+      'json:reports/cucumber-json/cucumber-report.json',
+      'html:reports/cucumber-html/cucumber-report.html',
+      'rerun:rerun/@rerun.txt'
+    ],
 
-    },
+    parallel: 1
+  },
 
-    rerun:{
-        requireModule: ["ts-node/register"],
+  rerun: {
+    requireModule: ["ts-node/register"],
 
-        require:[
-            'src/helper/report.ts',
-            'src/hooks/**/*.ts',
-            'src/world/**/*.ts',
-            'src/test/step-definition/**/*.ts'
-        ],
+    require: [
+      'src/test/hooks/**/*.ts',
+      'src/world/**/*.ts',
+      'src/test/step-definition/**/*.ts'
+    ],
 
-        paths:['rerun/@rerun.txt'],
+    paths: ['rerun/@rerun.txt'],
 
+    format: [
+      'progress',
+      'json:reports/rerun-cucumber-json/cucumber-report.json',
+      'html:reports/rerun-cucumber-html/cucumber-report.html',
+      'rerun:rerun/@rerun.txt'
+    ],
 
-        format:[
-            'snippets',
-            'json:reports/rerun-cucumber-json/cucumber-report.json',
-            'html:reports/rerun-cucumber-html/cucumber-report.html',
-            "rerun:rerun/@rerun.txt"
-        ],
-
-        parallel: 1
-
-    }
-}
+    parallel: 1
+  }
+};

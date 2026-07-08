@@ -3,8 +3,8 @@ Feature: Reshma_07-july-2026 Edit Existing Course
 
 Background:
 Given User on the login page
-And User enter the valid email
-And User enter the valid password
+When User enter the valid email
+When User enter the valid password
 When User clicks the Sign button
 And user navigates to the Course Management page
 And user searches for the course name

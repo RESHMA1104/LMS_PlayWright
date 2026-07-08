@@ -14,6 +14,7 @@
   "scripts": {
     "rishwanth": "cucumber-js --tags @Rishwanth",
     "prasanna": "cucumber-js --tags @Prasanna",
+    "haritha":"cucumber-js --tags @haritha",
     "test": "cucumber-js",
     "test:Reshma": "cucumber-js --tags @Reshma",
     "test:rerun": "cucumber-js -p rerun",

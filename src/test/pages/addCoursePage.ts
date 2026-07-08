@@ -33,31 +33,31 @@ export class AddCourse extends BasePage {
   }
 
   async commonMethod() {
-    await this.courseManagement.click();
-    await this.addCourse.click();
+    await this.click(this.courseManagement)
+    await this.click(this.addCourse);
   }
 
   async clickAddCourse() {
-    await this.addCourse.click();
+    await this.click(this.addCourse);
   }
 
   async clickNext() {
-    await this.nextBtn.click();
+    await this.click(this.nextBtn);
   }
 
   async validateWarningMessages() {
-    await expect(this.clientError).toBeVisible();
-    await expect(this.typeError).toBeVisible();
-    await expect(this.modelError).toBeVisible();
-    await expect(this.categoryError).toBeVisible();
-    await expect(this.nameError).toBeVisible();
+    await this.toBeVisible(this.clientError);
+    await this.toBeVisible(this.typeError);
+    await this.toBeVisible(this.modelError);
+    await this.toBeVisible(this.categoryError);
+    await this.toBeVisible(this.nameError);
   }
 
   async selectDropdown(index: number, value: string) {
     
     const dropdown = this.page.locator('button[role="combobox"]').nth(index);
 
-    await dropdown.click();
+    await this.click(dropdown);
 
     await this.page
         .locator('[role="option"]')
@@ -65,10 +65,10 @@ export class AddCourse extends BasePage {
         .first()
         .click();
 
-    await expect(dropdown).toContainText(value);
+    await this.toContainText(dropdown, value);
     }
 
   async validateNextPage() {
-    await expect(this.courseImage).toBeVisible();
+    await this.toBeVisible(this.courseImage);
   }
 }

@@ -7,7 +7,7 @@ export class ReportDownload extends  BasePage{
     readonly DownnloadExcel : Locator 
 
     constructor(page : Page){
-        super(page)
+        super(page);
         this.page =page;
         this.Print = page.locator("//button[@title='Click to preview']")
         this.DownnloadExcel = page.locator('//h3[text()="Export Options"]/parent::div/following-sibling::div//button');

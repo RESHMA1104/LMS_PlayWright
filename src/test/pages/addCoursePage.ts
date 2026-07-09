@@ -18,7 +18,7 @@ export class AddCourse extends BasePage {
   private invalidImageToast: Locator;
   private imageupload: Locator;
 
-  private previewCreateBtn: Locator;
+  private previewCreateBtn: Locator;  
   private courseImage: Locator;
   private resourcetypeBtn: Locator;
   private iDoBtn: Locator;

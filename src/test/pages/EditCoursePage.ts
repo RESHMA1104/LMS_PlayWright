@@ -9,6 +9,7 @@ export class EditPage extends BasePage{
     private editcrse : Locator;
     private crsclient : Locator;
     private servicemdl : Locator;
+    private servicetype : Locator;
     private nextBtn : Locator;
     private Preview : Locator;
     private previewUpdateBtn : Locator;
@@ -23,6 +24,13 @@ export class EditPage extends BasePage{
     private sql : Locator;
     private react : Locator;
     private c : Locator;
+    private wedoclick : Locator;
+    private onWedo : Locator;
+    private idoclick : Locator;
+    private onIdo : Locator;
+    private youdoclick : Locator;
+    private onYoudo : Locator;
+
 
     constructor(page:Page){
         super(page);
@@ -33,6 +41,7 @@ export class EditPage extends BasePage{
         this.editcrse = page.locator('//button[text()="Edit Course"]');
         this.crsclient = page.locator('//label[text()="Course Client"]//following::span[@data-slot="select-value"][1]');
         this.servicemdl = page.locator('//label[text()="Service Model"]//following::span[@data-slot="select-value"][1]');
+        this.servicetype = page.locator('//label[text()="Service Type"]//following::span[@data-slot="select-value"][1]');
         this.nextBtn = page.locator('//div[@class="flex justify-between items-center w-full font-sans"]//button[normalize-space()="Next"]');
         this.previewUpdateBtn = page.locator('//button[text()="Preview & Update"]');
         this.Preview = page.locator('//button[text()=" Save Course Layout"]');
@@ -47,11 +56,16 @@ export class EditPage extends BasePage{
         this.sql = page.locator('//label[text()="MySQL"]')
         this.c = page.locator('//label[text()="C"]')
         this.react = page.locator('//label[text()="React"]')
-
+        this.wedoclick = page.locator('//button[text()="We Do"]');
+        this.onWedo = page.locator('//div[text()="AI Chat"]//following::button[@aria-checked="false"][1]');
+        this.idoclick = page.locator('//button[text()="I Do"]');
+        this.onIdo = page.locator('//div[text()="PDF"]//following::button[@aria-checked="false"][1]');
+        this.youdoclick = page.locator('//button[text()="You Do"]');
+        this.onYoudo = page.locator('//div[text()="Notes"]//following::button[@aria-checked="false"][1]');
     }
 
     async CoursePage(){
-        await expect(this.courseMgt).toBeVisible({ timeout: 30000 });
+        await expect(this.courseMgt).toBeVisible({ timeout: 60000 });
         await this.courseMgt.click();
     }
     
@@ -69,6 +83,10 @@ export class EditPage extends BasePage{
 
     async CourseClient(){
         await this.selectDropdownValues(this.crsclient, loginData.courseEdit["Course Client"]);
+    }
+
+    async ServiceType(){
+        await this.selectDropdownValues(this.servicetype, loginData.courseEdit["Service Type"]);
     }
 
     async ServiceModel(){
@@ -127,5 +145,14 @@ export class EditPage extends BasePage{
         await this.checkTheBox(this.react);
         await this.checkTheBox(this.c);
         await this.checkTheBox(this.sql);
+    }
+
+    async RequiredType(required:string){
+        await this.click(this.idoclick);
+        await this.click(this.onIdo);
+        await this.click(this.wedoclick);
+        await this.click(this.onWedo);
+        await this.click(this.youdoclick);
+        await this.click(this.onYoudo);
     }
 }

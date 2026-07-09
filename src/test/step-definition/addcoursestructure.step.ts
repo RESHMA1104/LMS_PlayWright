@@ -26,3 +26,18 @@ Then('The User should be redirected to Add Course Structure page', async functio
     await this.coursemanagementPage.assertCourseManagementUrl(config.addCourseStructureUrl);
     logger.info("Redirected to Add Course Structure page successfully");
 });
+When('The User clicks Toogle hierarchy button', async function (this: BugFinder) {
+    await this.addcoursestructurePage.clickMoreAndToogleHierarchBtn();
+});
+When('The User clicks on Add sub module button', async function (this: BugFinder) {
+    await this.addcoursestructurePage.clickAddSubModuleButton();
+});
+When('The User Clicks on Add new Topic button', async function (this: BugFinder) {
+    await this.addcoursestructurePage.clickAddNewTopicBtn();
+});
+When('Enter The TOpic Details Title as {string} and description as <{string}> and check the skills', async function (this: BugFinder, string, string2) {
+    await this.addcoursestructurePage.fillForm(string, string2);
+});
+When('The User Clicks on Add Topic button', async function (this: BugFinder) {
+    await this.addcoursestructurePage.assertModuleSuccessMsg();
+});

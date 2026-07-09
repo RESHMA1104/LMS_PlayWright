@@ -11,12 +11,14 @@ export class DynamicFieldManagement extends BasePage {
     private courseCategorySuccessMsg: Locator;
     private searchBarCategory: Locator;
     private searchResultsCategory: Locator;
+
     private threeDotIcon: Locator;
     private deleteCategoryBtn: Locator;
     private deletingCoursename: Locator;
     private allCourseName: Locator;
     private module: Locator;
     private cofirmDelete: Locator;
+
 
     constructor(page: Page) {
         super(page);
@@ -29,12 +31,14 @@ export class DynamicFieldManagement extends BasePage {
         this.courseCategorySuccessMsg = page.locator('//h2[text()="Category Created Successfully"]');
         this.searchBarCategory = page.locator('//input[@placeholder="Search by name, description, code or courses..."]');
         this.searchResultsCategory = page.locator('(//td[@data-slot="table-cell"])[1]/child::span/child::div/child::div/child::div');
+
         this.threeDotIcon = page.locator('(//button[@data-slot="dropdown-menu-trigger"])[4]');
         this.deleteCategoryBtn = page.locator('(//div[@role="menuitem"])[2]');
         this.deletingCoursename = page.locator('//strong');
         this.allCourseName = page.locator('//td[@data-slot="table-cell"]/child::span/child::div/child::div/child::div');
         this.module = page.locator('//button[text()="Cancel"]');
         this.cofirmDelete = page.locator('//button[text()="Delete"]');
+
     }
 
     async clickCourseCaetogrySlider() {
@@ -96,6 +100,5 @@ export class DynamicFieldManagement extends BasePage {
             expect(actualName.trim()).not.toBe(expectedName.trim());
         }
     }
-
 
 }

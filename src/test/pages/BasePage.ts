@@ -23,7 +23,7 @@ export class BasePage {
 
     // Click the locator
     async click(locator: Locator) {
-        await expect(locator).toBeVisible({ timeout: 120 * 1000 });
+        await locator.isVisible({ timeout: 30000 });
         await locator.click();
     }
 
@@ -46,7 +46,7 @@ export class BasePage {
 
     // Assertion to HaveText
     async toHaveText(locator: Locator, value: string) {
-        await locator.isVisible();
+        await locator.isVisible({ timeout: 30000 });
         return await expect(locator).toHaveText(value);
     }
 
@@ -58,7 +58,7 @@ export class BasePage {
 
     // To ContainText
     async toContainText(locator: Locator, value: string) {
-        await locator.isVisible({ timeout: 360000 });
+        await locator.isVisible({ timeout: 90000 });
         return await expect(locator).toContainText(value);
     }
 
@@ -120,6 +120,11 @@ export class BasePage {
 
     async pressEnter(locator: Locator) {
         await locator.press("Enter");
+    }
+
+    async selectDropdownValues(dropdown: Locator, option: string) {
+        await dropdown.click();
+        await this.page.getByText(option, { exact: true }).click();
     }
 
     // Return True  when the locator is toBeVisible

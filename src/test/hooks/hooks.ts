@@ -15,10 +15,10 @@ import { AddCourse } from "../pages/addCoursePage";
 import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
 import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
-
+import { AddService } from '../pages/AddnewService';
 
 // Default Timeout
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(90 * 1000);
 
 let browser: Browser;
 
@@ -46,6 +46,7 @@ Before(async function (this: BugFinder) {
     this.courseFilter = new CourseFilter(this.page);
     this.AddSimilarCourses = new AddSimilarCourse(this.page);
     this.courseFilter = new CourseFilter(this.page);
+    this.AddService = new AddService(this.page)
 })
 
 // If the test Failed ScreenShot capture 

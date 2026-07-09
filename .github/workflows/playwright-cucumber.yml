@@ -2,14 +2,10 @@ name: LMS Playwright BDD Tests
 
 on:
   push:
-    branches:
-      - main
-      - master
+    branches: [main, master]
 
   pull_request:
-    branches:
-      - main
-      - master
+    branches: [main, master]
 
 jobs:
   test:
@@ -26,13 +22,15 @@ jobs:
           node-version: 20
 
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
 
       - name: Run Cucumber Tests
         run: npm test
+        env:
+          CI: true
 
       - name: Generate HTML Report
         if: always()

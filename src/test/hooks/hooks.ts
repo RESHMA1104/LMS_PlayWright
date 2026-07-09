@@ -55,10 +55,10 @@ Before(async function (this: BugFinder) {
     this.courseFilter = new CourseFilter(this.page);
     this.AddService = new AddService(this.page)
     this.ServieEdit = new ServieEdit(this.page)
-    this.deleteService = new deleteService(this.page)
+    // this.deleteService = new deleteService(this.page)
     this.AddService = new AddService(this.page);
     this.ServieEdit = new ServieEdit(this.page);
-    // this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);
+    this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);
 })
 
 // If the test Failed ScreenShot capture 

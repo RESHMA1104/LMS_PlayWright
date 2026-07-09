@@ -10,13 +10,13 @@ import { DashBoardPage } from "../pages/dashboardpage";
 import { CourseManagementPage } from "../pages/coursemanagementpage";
 import { AddCorseStructurePage } from "../pages/addcoursestructurepage";
 
-import { ReportDownload } from "../pages/PrintReportPage"
+
 import { AddCourse } from "../pages/addCoursePage";
 import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
-import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 import { AddService } from '../pages/AddnewService';
 import { ServieEdit } from "../pages/ServiceEditPage";
+import { deleteService } from "../pages/deteteServicepage";
 import { DynamicFieldManagement } from "../pages/dynamicfieldmanagementpage";
 
 // Default Timeout
@@ -28,7 +28,7 @@ let browser: Browser;
 BeforeAll(async () => {
 
     browser = await chromium.launch({
-        headless: true
+        headless: false
     })
 })
 
@@ -47,12 +47,15 @@ Before(async function (this: BugFinder) {
     this.coursemanagementPage = new CourseManagementPage(this.page);
 
     this.addcoursestructurePage = new AddCorseStructurePage(this.page);
-    this.ReportDownload = new ReportDownload(this.page)
+    
     this.addCoursePage = new AddCourse(this.page);
     this.editPage = new EditPage(this.page);
     this.courseFilter = new CourseFilter(this.page);
-    this.AddSimilarCourses = new AddSimilarCourse(this.page);
+  
     this.courseFilter = new CourseFilter(this.page);
+    this.AddService = new AddService(this.page)
+    this.ServieEdit = new ServieEdit(this.page)
+    // this.deleteService = new deleteService(this.page)
     this.AddService = new AddService(this.page);
     this.ServieEdit = new ServieEdit(this.page);
     this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);

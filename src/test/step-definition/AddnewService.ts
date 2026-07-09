@@ -43,6 +43,7 @@ Then('The user did not see the notification', async function (this: BugFinder) {
     logger.info("Verifying notification is not displayed");
     await this.AddService.VerifyNotificationNotDisplayed();
     logger.info("Verified notification is not displayed");
+
 });
 
 const valid = dyanamicsearchdata.valid;

@@ -15,6 +15,10 @@ export class EditPage extends BasePage{
     private successMessage : Locator;
     private courseCategory : Locator;
     private validationMsg : Locator;
+    private ido : Locator;
+    private wedo : Locator;
+    private youdo : Locator;
+    private basiccrsepage : Locator;
 
     constructor(page:Page){
         super(page);
@@ -31,6 +35,11 @@ export class EditPage extends BasePage{
         this.successMessage = page.locator('//div[@class="text-sm font-semibold leading-tight"]');
         this.courseCategory = page.locator('//label[text()="Course Category"]//following::span[@data-slot="select-value"][1]');
         this.validationMsg = page.locator("//span[normalize-space()='Please enter a course name']");
+        this.ido = page.locator('//label[text()="I Do"]//following::span[@data-slot="select-value"][1]');
+        this.wedo = page.locator('//label[text()="We Do"]//following::span[@data-slot="select-value"][1]');
+        this.youdo = page.locator('//label[text()="You Do"]//following::span[@data-slot="select-value"][1]')
+        this.basiccrsepage = page.locator('//div[@class="text-xs font-medium whitespace-nowrap font-sans text-slate-700 dark:text-gray-300"]');
+
     }
 
     async CoursePage(){
@@ -77,5 +86,31 @@ export class EditPage extends BasePage{
 
     async MsgValidation(){
         await expect(this.validationMsg).toHaveText(loginData.courseValidation.ValidationMessage);
+    }
+
+    async selectMultiDdPedagogy(locator: Locator, value: string) {
+        await locator.click();
+        const listBox = this.page.locator('[role="listbox"]').last();
+        await listBox
+            .locator('label')
+            .filter({ hasText: value })
+            .click();
+        await expect(this.page.getByText(new RegExp(`\\d+\\.\\s*${value}`))).toBeVisible();
+    }
+
+    async selectIDo(Ido: string) {
+    await this.selectMultiDdPedagogy(this.ido, Ido);
+    }
+
+    async selectWeDo(Wedo: string) {
+        await this.selectMultiDdPedagogy(this.wedo, Wedo);
+    }
+
+    async selectYouDo(Youdo: string) {
+        await this.selectMultiDdPedagogy(this.youdo, Youdo);
+    }
+
+    async CourseBasicPge(){
+        await this.basiccrsepage.isVisible();
     }
 }

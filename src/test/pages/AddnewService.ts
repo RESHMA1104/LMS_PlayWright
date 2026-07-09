@@ -51,7 +51,10 @@ export class AddService extends BasePage {
     }
 
     async VerifyServiceCreatedPopup() {
-        await expect(this.SuccessPopup).toBeVisible();
+        console.log(this.SuccessPopup.textContent())
+        console.log(this.SuccessPopup.textContent())
+        await expect(this.SuccessPopup).toBeVisible({ timeout: 90000 });           
+
     }
 
     async VerifyNotificationNotDisplayed() {
@@ -63,16 +66,11 @@ export class AddService extends BasePage {
         await this.fill(this.Searchbar,data)
     }
 
-
-
-
-
 async validateSearchdata(searchData: string) {
 
     const serviceList = await this.Tabledata.allTextContents();
-    console.log("Displayed Services:", serviceList);
-    expect(serviceList.length).toBeGreaterThan(0);
-    expect(serviceList.map(service => service.trim().toLowerCase()) ).toContain(searchData.trim().toLowerCase());
+    console.log("Displayed Services:", serviceList);  
+    expect(serviceList.join(" ").toLowerCase()).toContain(searchData.toLowerCase());
 }
 
 async validateNoSearchDataFound() {

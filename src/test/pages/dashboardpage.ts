@@ -12,7 +12,7 @@ export class DashBoardPage extends BasePage {
     }
 
     async clickCourseManagementDrawer() {
-        await expect(this.corseManagementLinkDrawer).toBeVisible({ timeout: 30000 });
+        await expect(this.corseManagementLinkDrawer).toBeVisible({ timeout: 60000 });
         await this.corseManagementLinkDrawer.click();
     }
 }

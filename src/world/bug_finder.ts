@@ -1,5 +1,6 @@
 
 
+
 /*/*
     CustomWorld Creation to use cross the Project 
 */
@@ -16,6 +17,8 @@ import { EditPage } from '../test/pages/EditCoursePage';
 import { CourseFilter } from '../test/pages/courseFilterPage';
 import { AddSimilarCourse } from '../test/pages/AddSimilarCoursepage';
 import { AddService } from '../test/pages/AddnewService';
+import { ServieEdit } from '../test/pages/ServiceEditPage';
+
 
 // CustomWorld extends World
 export class BugFinder extends World {
@@ -32,6 +35,7 @@ export class BugFinder extends World {
     courseFilter!:CourseFilter;
     AddSimilarCourses! :AddSimilarCourse
     AddService! : AddService
+    ServieEdit! : ServieEdit
     
 
 }

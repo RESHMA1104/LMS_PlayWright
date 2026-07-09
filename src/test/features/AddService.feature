@@ -1,4 +1,4 @@
-@Service @Main
+@Service 
 Feature: Tamilarasu_08_07_2026 Adding Course Structure
 
   Background:

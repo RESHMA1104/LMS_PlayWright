@@ -24,9 +24,11 @@ export class deleteService extends BasePage{
        await this.click(this.deletionbuttton)
     }
 
-    async popupchecking(){
-        await expect(this.popupnotification).toBeVisible
-    }
+  async popupchecking() {
+    await expect(this.popupnotification).toBeVisible({
+        timeout: 90000
+    });
+}
 
 
 }

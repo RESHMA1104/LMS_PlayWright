@@ -19,6 +19,10 @@ export class EditPage extends BasePage{
     private wedo : Locator;
     private youdo : Locator;
     private basiccrsepage : Locator;
+    private python : Locator;
+    private sql : Locator;
+    private react : Locator;
+    private c : Locator;
 
     constructor(page:Page){
         super(page);
@@ -39,6 +43,10 @@ export class EditPage extends BasePage{
         this.wedo = page.locator('//label[text()="We Do"]//following::span[@data-slot="select-value"][1]');
         this.youdo = page.locator('//label[text()="You Do"]//following::span[@data-slot="select-value"][1]')
         this.basiccrsepage = page.locator('//div[@class="text-xs font-medium whitespace-nowrap font-sans text-slate-700 dark:text-gray-300"]');
+        this.python = page.locator('//label[text()="Python"]')
+        this.sql = page.locator('//label[text()="MySQL"]')
+        this.c = page.locator('//label[text()="C"]')
+        this.react = page.locator('//label[text()="React"]')
 
     }
 
@@ -112,5 +120,12 @@ export class EditPage extends BasePage{
 
     async CourseBasicPge(){
         await this.basiccrsepage.isVisible();
+    }
+
+    async SkillsetAdd(skill:string){
+        await this.checkTheBox(this.python);
+        await this.checkTheBox(this.react);
+        await this.checkTheBox(this.c);
+        await this.checkTheBox(this.sql);
     }
 }

@@ -16,6 +16,7 @@ import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
 import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 import { AddService } from '../pages/AddnewService';
+import { ServieEdit } from "../pages/ServiceEditPage";
 
 // Default Timeout
 setDefaultTimeout(90 * 1000);
@@ -47,6 +48,7 @@ Before(async function (this: BugFinder) {
     this.AddSimilarCourses = new AddSimilarCourse(this.page);
     this.courseFilter = new CourseFilter(this.page);
     this.AddService = new AddService(this.page)
+    this.ServieEdit = new ServieEdit(this.page)
 })
 
 // If the test Failed ScreenShot capture 

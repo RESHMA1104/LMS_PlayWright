@@ -12,6 +12,9 @@ export class AddService extends BasePage {
     private Searchbar: Locator;
     private Tabledata : Locator;
     private Nodatafound : Locator;
+    //  private successToast  : Locator;
+      private successMessage  : Locator;
+      private successAlert : Locator;
 
 
     constructor(page: Page) {
@@ -23,6 +26,13 @@ export class AddService extends BasePage {
         this.Description = page.locator("//textarea[@placeholder='Describe the service...']");
         this.CreateService = page.locator("//button[@type='submit']");
         this.SuccessPopup = page.locator("//div[@role='alert']");
+        //new locator
+
+        // this.successToast = this.page.locator(".Toastify__toast--success");
+        this.successMessage = this.page.getByText("Service created successfully");
+        this.successAlert = this.page.getByRole("alert");
+
+
         this.Searchbar = page.locator("//input[@placeholder='Search services...']")
         this.Tabledata =page.locator("//tbody/tr/td[2]//div[contains(@class,'font-medium')]")
         this.Nodatafound =page.locator("//td[text()='No services found ']")

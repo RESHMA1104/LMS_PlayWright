@@ -60,7 +60,7 @@ Scenario: To verify  Search Functionality with invalid data in the Dynamic Field
    When the user click on the Dynamic field Setting
    And click on the delete button 
    And the user click on the delete
-   And the user See the notifucation for sucessfully delete 
+   And the user See the notifucation for sucessfully delete   
 
 
 

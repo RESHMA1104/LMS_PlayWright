@@ -14,7 +14,6 @@ import { AddCorseStructurePage } from "../pages/addcoursestructurepage";
 import { AddCourse } from "../pages/addCoursePage";
 import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
-import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 import { AddService } from '../pages/AddnewService';
 import { ServieEdit } from "../pages/ServiceEditPage";
 
@@ -50,7 +49,7 @@ Before(async function (this: BugFinder) {
     this.addCoursePage = new AddCourse(this.page);
     this.editPage = new EditPage(this.page);
     this.courseFilter = new CourseFilter(this.page);
-    this.AddSimilarCourses = new AddSimilarCourse(this.page);
+  
     this.courseFilter = new CourseFilter(this.page);
     this.AddService = new AddService(this.page)
     this.ServieEdit = new ServieEdit(this.page)

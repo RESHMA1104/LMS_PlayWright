@@ -18,6 +18,7 @@ import { CourseFilter } from '../test/pages/courseFilterPage';
 import { AddSimilarCourse } from '../test/pages/AddSimilarCoursepage';
 import { AddService } from '../test/pages/AddnewService';
 import { ServieEdit } from '../test/pages/ServiceEditPage';
+import { DeletePage } from '../test/pages/DeleteCoursePage';
 
 
 // CustomWorld extends World
@@ -36,6 +37,7 @@ export class BugFinder extends World {
     AddSimilarCourses! :AddSimilarCourse
     AddService! : AddService
     ServieEdit! : ServieEdit
+    deletePage!: DeletePage
     
 
 }

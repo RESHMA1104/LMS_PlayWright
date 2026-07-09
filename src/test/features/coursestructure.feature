@@ -1,6 +1,6 @@
 @Rishwanth
 Feature: Rishwanth_07_07_2026 Adding Course Structure
- Description: To Check the Whether the adding functionality of Module,Sub-Module,Topic and Sub Topic are added Successfully
+ Description: To Check the Whether the adding functionality of Module,Sub-Module are added Successfully
 
   Background:
     Given User on the login page

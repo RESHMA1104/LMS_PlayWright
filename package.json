@@ -13,6 +13,7 @@
   "homepage": "https://lms-smartcliff.vercel.app/lms/pages/admindashboard",
   "scripts": {
     "tamilarasu":"cucumber-js --tags @Tamilarasu",
+    "cc": "cucumber-js --tags @CC",
     "rishwanth": "cucumber-js --tags @Rishwanth",
     "prasanna": "cucumber-js --tags @Prasanna",
     "haritha":"cucumber-js --tags @haritha",

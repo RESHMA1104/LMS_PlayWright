@@ -11,13 +11,13 @@ When('Click on Add Service', async function (this: BugFinder) {
     await this.AddService.AddSeviceclivking();
 });
 
-When('Enter the {string} and {string}',async function (this: BugFinder,ServiceName: string,Description: string) {
-        await this.AddService.Enteringthedetailsing(ServiceName, Description);
-    }
+When('Enter the {string} and {string}', async function (this: BugFinder, ServiceName: string, Description: string) {
+    await this.AddService.Enteringthedetailsing(ServiceName, Description);
+}
 );
 
 When('Click on the Create Service', async function (this: BugFinder) {
-   
+
     await this.AddService.CreateingServiceing();
 });
 
@@ -31,14 +31,8 @@ Then(
 
 Then('The user did not see the notification', async function (this: BugFinder) {
     await this.AddService.VerifyNotificationNotDisplayed();
-   
+
 });
-
-
-
-
-
-
 
 const valid = dyanamicsearchdata.valid;
 const invalid = dyanamicsearchdata.invalid;

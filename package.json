@@ -16,6 +16,7 @@
     "cc": "cucumber-js --tags @CC",
     "rishwanth": "cucumber-js --tags @Rishwanth",
     "prasanna": "cucumber-js --tags @Prasanna",
+    "main": "cucumber-js --tags @Main",
     "haritha":"cucumber-js --tags @haritha",
     "test": "cucumber-js",
     "test:Reshma": "cucumber-js --tags @Reshma",

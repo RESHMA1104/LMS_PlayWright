@@ -9,6 +9,10 @@ export class AddService extends BasePage {
     private Description: Locator;
     private CreateService: Locator;
     private SuccessPopup: Locator;
+    private Searchbar: Locator;
+    private Tabledata : Locator;
+    private Nodatafound : Locator;
+
 
     constructor(page: Page) {
         super(page);
@@ -19,6 +23,10 @@ export class AddService extends BasePage {
         this.Description = page.locator("//textarea[@placeholder='Describe the service...']");
         this.CreateService = page.locator("//button[@type='submit']");
         this.SuccessPopup = page.locator("//div[@role='alert']");
+        this.Searchbar = page.locator("//input[@placeholder='Search services...']")
+        this.Tabledata =page.locator("//tbody/tr/td[2]//div[contains(@class,'font-medium')]")
+        this.Nodatafound =page.locator("//td[text()='No services found ']")
+
 
         // Update this locator according to your application's success message
         
@@ -49,5 +57,28 @@ export class AddService extends BasePage {
     async VerifyNotificationNotDisplayed() {
     await expect(this.SuccessPopup).not.toBeVisible();
     }
+    
+
+    async Searchdataindyamic(data:any){
+        await this.fill(this.Searchbar,data)
+    }
+
+
+
+
+
+async validateSearchdata(searchData: string) {
+
+    const serviceList = await this.Tabledata.allTextContents();
+    console.log("Displayed Services:", serviceList);
+    expect(serviceList.length).toBeGreaterThan(0);
+    expect(serviceList.map(service => service.trim().toLowerCase()) ).toContain(searchData.trim().toLowerCase());
+}
+
+async validateNoSearchDataFound() {
+    await expect(this.Nodatafound).toBeVisible();
+    const serviceList = await this.Tabledata.allTextContents();
+    expect(serviceList.length).toBe(0);
+}
 }
 

@@ -23,3 +23,21 @@ Feature: Tamilarasu_08_07_2026 Adding Course Structure
     And Click on Add Service
     And Click on the Create Service
     Then The user did not see the notification
+
+
+ @Service2
+Scenario: Search Functionality with valid data in the Dynamic Field Setting
+  When the user click on the Dynamic field Setting
+  And the user enter valid Service type in the search bar
+  Then the Service Should properly display
+
+@Service2
+Scenario: Search Functionality with invalid data in the Dynamic Field Setting
+  When the user click on the Dynamic field Setting
+  And the user enter invalid Service type in the search bar
+  Then the Service Should get the message for No services found matching your search for invalid data
+
+    
+
+
+

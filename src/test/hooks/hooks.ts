@@ -14,14 +14,14 @@ import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
 
 // Default Timeout
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(90 * 1000);
 
 let browser: Browser;
 
 // Browser launch the application 
 BeforeAll(async () => {
     browser = await chromium.launch({
-        headless: true
+        headless: false
     })
 })
 

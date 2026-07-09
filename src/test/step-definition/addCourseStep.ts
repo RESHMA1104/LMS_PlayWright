@@ -3,6 +3,8 @@ import { BugFinder } from '../../world/bug_finder';
 import { ExcelReader } from '../../utils/excelReader';
 import { logger } from '../../utils/logger';
 import path from 'path';
+import { JsonReader } from '../../utils/jsonReader';
+
 
 When('the user clicks the Add Course button', async function (this: BugFinder) {
   try {
@@ -184,4 +186,87 @@ Then('the selected pedagogy values should be displayed correctly', async functio
     logger.error(`Pedagogy validation failed : ${error}`);
     throw error;
   }
+});
+
+Then('the user is leaves mandatory fields as empty and click the preview & create button', async function (this: BugFinder) {
+  try {
+    logger.info('Click the preview & Create button');
+
+    await this.addCoursePage.click_preview_create();
+    await this.addCoursePage.invalid_prview_create();
+
+  } catch (error) {
+    logger.error('The Error message is not shown');
+    throw error;
+  }
+});
+
+Then("the user uploads the invalid images it need to show an invalid image format", async function () {
+  await this.addCoursePage.invalid_image();
+});
+
+
+When('the user add the pedagogy values for I Do,We Do and you Do', async function (this:BugFinder) {
+    try {
+    logger.info('Loading pedagogy data from Excel');
+
+    const filePath = path.resolve(process.cwd(), 'test-data/CourseData.xlsx');
+    const data = ExcelReader.read(filePath, 'Sheet2') as any[];
+
+    for (const row of data) {
+      const index = Number(row.DropdownIndex);
+      const value = String(row.Value).trim();
+
+      if (isNaN(index) || !value) {
+        throw new Error(`Invalid Excel Row : ${JSON.stringify(row)}`);
+      }
+
+      await this.addCoursePage.selectMultiDropdownPedagogy(index, value);
+
+      logger.info(`Selected pedagogy '${value}' from dropdown index '${index}'`);
+    }
+
+    logger.info('Pedagogy values selected successfully');
+  } catch (error) {
+    logger.error(`Pedagogy selection failed : ${error}`);
+    throw error;
+  }
+
+  try {
+    logger.info('Validating selected pedagogy values');
+
+    const filePath = path.resolve(process.cwd(), 'test-data/CourseData.xlsx');
+    const data = ExcelReader.read(filePath, 'Sheet2') as any[];
+
+    for (const row of data) {
+      const value = String(row.Value).trim();
+
+      await this.addCoursePage.validatePedagogyValue(value);
+
+      logger.info(`Validated pedagogy value '${value}'`);
+    }
+
+    logger.info('All pedagogy values validated successfully');
+  } catch (error) {
+    logger.error(`Pedagogy validation failed : ${error}`);
+    throw error;
+  }
+
+
+});
+
+
+When('the user selects Resource type values for I Do, We Do and You Do', async function () {
+  const data = JsonReader.read('resourceTypes');
+
+    for (const resource of data.resourceTypes) {
+      await this.addCoursePage.resourceTypeAdd(
+        resource.buttons,
+        resource.resourceName
+      );
+    }
+});
+
+Then('the select Resource Type value should be on state', async function () {
+  await this.addCoursePage.validateResourceTypeOnState();
 });

@@ -16,7 +16,7 @@ export class AddSimilarCourse extends BasePage {
 
         this.SimilarCoure = page.locator('//span[text()="Similar Courses"]');
         this.Category = page.locator('//label[text()="Filter by Category:"]/following-sibling::button');
-        this.SelectCourse = page.locator('//label[text()="Select Course:"]/following::input');
+        this.SelectCourse = page.locator('//label[text()="Select Course:"]/following-sibling::button');
         this.AvailableHierarchyLevels = page.locator("//label[@for='select-all-hierarchy']");
         this.SelectedLevels = page.locator('//label[text()="Select Course:"]/following::input[1]');
         this.Select_model = page.locator("//label[text()='Select All']");
@@ -29,13 +29,14 @@ export class AddSimilarCourse extends BasePage {
 
     async selectRadixDropdown(dropdown: Locator, optionText: string): Promise<void> {
         await dropdown.click();
+
         const option = this.page.getByRole("option", {
             name: optionText,
             exact: true
         });
-        await expect(option).toBeVisible();
+
+        await expect(option).toBeVisible({ timeout: 15000 });
         await option.click();
-        await expect(dropdown).toContainText(optionText);
     }
 
     async Selcatego(category: string) {

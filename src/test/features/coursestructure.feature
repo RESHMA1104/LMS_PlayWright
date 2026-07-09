@@ -14,7 +14,7 @@ Feature: Rishwanth_07_07_2026 Adding Course Structure
     And The User Clicks on Add course Structure On Search Resulted Course
     Then The User should be redirected to Add Course Structure page
 
-  Scenario Outline:
+  Scenario Outline: To check Whether New Module is Created Successfully
     And The User Clicks on Course Management in DashboaedPage
     And The User Enters The Course Name In Search Bar
     And The User Clicks on Add course Structure On Search Resulted Course
@@ -26,3 +26,34 @@ Feature: Rishwanth_07_07_2026 Adding Course Structure
     Examples:
       | title      | description                  |
       | Bug Finder | Finding Bugs for defect free |
+
+  Scenario Outline: To check Whether NewSub-Module is Created Successfully
+    And The User Clicks on Course Management in DashboaedPage
+    And The User Enters The Course Name In Search Bar
+    And The User Clicks on Add course Structure On Search Resulted Course
+    And The User clicks Toogle hierarchy button
+    And The User clicks on Add sub module button
+    And Enter The Module Detail Title as "<title>" and description as "<description>" and Check the skills
+    And The User Clicks on Add Module
+    Then The user will be notified with the Success Message
+
+    Examples:
+      | title  | description   |
+      | UI Bug | UI Bug Raised |
+
+  Scenario Outline: To check Whether Topic is Created Successfully
+    And The User Clicks on Course Management in DashboaedPage
+    And The User Enters The Course Name In Search Bar
+    And The User Clicks on Add course Structure On Search Resulted Course
+    And The User clicks Toogle hierarchy button
+    And The User clicks on Add sub module button
+    And Enter The Module Detail Title as "<title>" and description as "<description>" and Check the skills
+    And The User Clicks on Add Module
+    And The User Clicks on Add new Topic button
+    And Enter The TOpic Details Title as "<topicTitle>" and description as "<topicDescription>" and check the skills
+    And The User Clicks on Add Topic button
+    Then The user will be notified with the Success Message
+
+    Examples:
+      | title  | description   | topicTitle     | topicDescription                         |
+      | UI Bug | UI Bug Raised | Responsiveness | Your Web should flexible for all devices |

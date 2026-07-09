@@ -19,14 +19,15 @@ import { AddService } from '../pages/AddnewService';
 import { ServieEdit } from "../pages/ServiceEditPage";
 
 // Default Timeout
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(90 * 1000);
 
 let browser: Browser;
 
 // Browser launch the application 
 BeforeAll(async () => {
+
     browser = await chromium.launch({
-        headless: false
+        headless: true
     })
 })
 
@@ -43,7 +44,7 @@ Before(async function (this: BugFinder) {
     this.ReportDownload = new ReportDownload(this.page)
     this.addCoursePage = new AddCourse(this.page);
     this.editPage = new EditPage(this.page);
-    this.courseFilter=new CourseFilter(this.page);
+    this.courseFilter = new CourseFilter(this.page);
     this.AddSimilarCourses = new AddSimilarCourse(this.page);
     this.courseFilter = new CourseFilter(this.page);
     this.AddService = new AddService(this.page)

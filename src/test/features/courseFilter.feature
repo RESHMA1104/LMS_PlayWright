@@ -21,3 +21,14 @@ When User searches codes with the following data
      | keyword    |
     | PT-BTI-H   | 
     | J-BTI-H    | 
+
+Scenario: Search using invalid keyword
+And user navigate to course management page
+When User searches invalid keyword with the following data
+    | keyword | result         |
+    | KSR     | No users found |
+    | web development | No users found |
+
+Scenario: Filter courses using excel data
+And user navigate to course management page
+When User filters the courses using excel data

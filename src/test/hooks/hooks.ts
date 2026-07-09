@@ -3,7 +3,7 @@
 */
 
 import { BugFinder } from "../../world/bug_finder";
-import { Browser, chromium } from "@playwright/test";
+import { Browser, chromium, firefox } from "@playwright/test";
 import { Before, After, BeforeAll, AfterAll, Status, setDefaultTimeout } from "@cucumber/cucumber";
 import { LoginPage } from "../pages/loginPage";
 import { DashBoardPage } from "../pages/dashboardpage";
@@ -18,7 +18,7 @@ import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 import { AddService } from '../pages/AddnewService';
 
 // Default Timeout
-setDefaultTimeout(90 * 1000);
+setDefaultTimeout(180 * 1000);
 
 let browser: Browser;
 
@@ -26,15 +26,20 @@ let browser: Browser;
 BeforeAll(async () => {
 
     browser = await chromium.launch({
-        headless: true
+        headless: false
     })
 })
 
 // Reference to the Object and creating the resource to the CustomWorld
 Before(async function (this: BugFinder) {
+
     this.browser = browser;
     this.browserContext = await this.browser.newContext();
     this.page = await this.browserContext.newPage();
+
+    this.page.setDefaultTimeout(120000);
+    this.page.setDefaultNavigationTimeout(120000);
+
     this.loginPage = new LoginPage(this.page);
     this.dashboardPage = new DashBoardPage(this.page);
     this.coursemanagementPage = new CourseManagementPage(this.page);

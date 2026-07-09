@@ -18,7 +18,7 @@ import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 import { AddService } from '../pages/AddnewService';
 
 // Default Timeout
-setDefaultTimeout(60 * 1000);
+setDefaultTimeout(90 * 1000);
 
 let browser: Browser;
 

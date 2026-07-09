@@ -34,3 +34,18 @@ Feature: Course Creation
              Then the selected pedagogy values should be displayed correctly
 
 
+        Scenario: Invalid leaving empty mandatory fields and click preview & create button
+            Given the user has completed the course basic configuration
+              And the user is leaves mandatory fields as empty and click the preview & create button
+
+
+        Scenario: invalid image format sending
+            Given the user has completed the course basic configuration
+              And the user uploads the invalid images it need to show an invalid image format
+
+
+        Scenario: Resource Type adding
+            Given the user has completed the course basic configuration
+              And the user add the pedagogy values for I Do,We Do and you Do
+              And the user selects Resource type values for I Do, We Do and You Do
+             Then the select Resource Type value should be on state

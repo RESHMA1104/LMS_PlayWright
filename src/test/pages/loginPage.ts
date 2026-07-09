@@ -2,56 +2,71 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 
 export class LoginPage extends BasePage {
+  private txtEmail: Locator;
+  private txtPassword: Locator;
+  private btnSignIn: Locator;
+  private lblErrorMessage: Locator;
+  private profile: Locator;
+  private signout: Locator;
+  constructor(page: Page) {
+    super(page);
 
-    private txtEmail: Locator;
-    private txtPassword: Locator;
-    private btnSignIn: Locator;
-    private lblErrorMessage: Locator;
+    this.txtEmail = page.locator("//input[@type='email']");
+    this.txtPassword = page.locator("//input[@type='password']");
+    this.btnSignIn = page.locator("//button[@type='submit']");
+    this.profile = page.locator("(//button[@aria-haspopup='menu'])[2]");
+    this.signout = this.page.getByRole("menuitem", {name: "Sign Out"});
+    // Toast notification
+    this.lblErrorMessage = page.locator("[role='status']");
+  }
 
+  async enterEmail(email: string) {
+    await this.fill(this.txtEmail, email);
+  }
 
-    constructor(page: Page) {
-        super(page);
+  async enterPassword(password: string) {
+    await this.fill(this.txtPassword, password);
+  }
 
-        this.txtEmail = page.locator("//input[@type='email']");
-        this.txtPassword = page.locator("//input[@type='password']");
-        this.btnSignIn = page.locator("//button[@type='submit']");
+  async clickSignIn() {
+    await this.click(this.btnSignIn);
+  }
 
-        // Toast notification
-        this.lblErrorMessage = page.locator("[role='status']");
-    }
+  async login(email: string, password: string) {
+    await this.enterEmail(email);
+    await this.enterPassword(password);
+    await this.clickSignIn();
+  }
 
-    async enterEmail(email: string) {
-        await this.fill(this.txtEmail, email);
-    }
+  async verifyDashboard() {
+    await expect(this.page).toHaveURL(/admindashboard/, {
+      timeout: 20000,
+    });
+  }
 
-    async enterPassword(password: string) {
-        await this.fill(this.txtPassword, password);
-    }
+  async verifyErrorMessage(message: string) {
+    await expect(this.lblErrorMessage).toBeVisible({
+      timeout: 20000,
+    });
 
-    async clickSignIn() {
-        await this.click(this.btnSignIn);
-    }
+    await expect(this.lblErrorMessage).toContainText(message, {
+      timeout: 20000,
+    });
+  }
 
-    async login(email: string, password: string) {
-        await this.enterEmail(email);
-        await this.enterPassword(password);
-        await this.clickSignIn();
-    }
+  async clickProfile() {
+    await this.click(this.profile);
+  }
 
-    async verifyDashboard() {
-        await expect(this.page).toHaveURL(/admindashboard/, {
-            timeout: 20000,
-        });
-    }
+  async clickSignOut() {
+    await this.click(this.signout);
+  }
 
-    async verifyErrorMessage(message: string) {
+  async verifyLoginPage() {
+    await expect(this.page).toHaveURL(/login/, {
+      timeout: 20000,
+    });
 
-        await expect(this.lblErrorMessage).toBeVisible({
-            timeout: 20000,
-        });
-
-        await expect(this.lblErrorMessage).toContainText(message, {
-            timeout: 20000,
-        });
-    }
+    await expect(this.btnSignIn).toBeVisible();
+  }
 }

@@ -20,3 +20,13 @@ Feature: Haritha_07-july-2026 Login functionality
       | email                | password | message               |
       | testing@gmail.com    | test     | Password is incorrect |
       | testing123@gmail.com |      123 | Email is invalid      |
+
+  Scenario: logout succesfully
+    When User enter the valid email
+    When User enter the valid password
+    When User clicks the Sign button
+    Then User should navigate to the Dashboard page
+    When User click the profile button
+    When User click the sigout button
+    Then user should navigate to login page
+

@@ -89,9 +89,11 @@ When('user selects {string} in the You Do pedagogy', async function (this: BugFi
 });
 
 When('user selects the required skill set', async function (this: BugFinder) {
-    const AddskillData = ExcelReader.read("test-data\\CourseData.xlsx", "Sheet3");
-
-    for (const row of AddskillData) {
+    logger.info("Selecting the required skill set from Excel data");
+    const addSkillData = ExcelReader.read("test-data\\CourseData.xlsx", "Sheet3");
+    for (const row of addSkillData) {
+        logger.info(`Selecting skill: ${row.skill}`);
         await this.editPage.SkillsetAdd(row.skill);
+        logger.info(`Successfully selected skill: ${row.skill}`);
     }
-})
+});

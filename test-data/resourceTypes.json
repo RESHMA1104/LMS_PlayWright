@@ -1,0 +1,16 @@
+{
+  "resourceTypes": [
+    {
+      "resourceName": "I Do",
+      "buttons": [1, 4]
+    },
+    {
+      "resourceName": "We Do",
+      "buttons": [1]
+    },
+    {
+      "resourceName": "You Do",
+      "buttons": [1]
+    }
+  ]
+}

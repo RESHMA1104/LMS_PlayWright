@@ -1,3 +1,4 @@
+import { setDefaultTimeout } from "@cucumber/cucumber";
 /*/*
     Reusable action methods all over the project....
 */
@@ -22,7 +23,7 @@ export class BasePage {
 
     // Click the locator
     async click(locator: Locator) {
-        await locator.isVisible({timeout:30000});
+        await locator.isVisible({ timeout: 30000 });
         await locator.click();
     }
 
@@ -45,7 +46,7 @@ export class BasePage {
 
     // Assertion to HaveText
     async toHaveText(locator: Locator, value: string) {
-        await locator.isVisible({timeout:30000});
+        await locator.isVisible({ timeout: 30000 });
         return await expect(locator).toHaveText(value);
     }
 
@@ -82,7 +83,8 @@ export class BasePage {
 
     // click the checkBox
     async checkTheBox(locator: Locator) {
-        await locator.isVisible();
+        await locator.scrollIntoViewIfNeeded();
+        await locator.isVisible({ timeout: 60000 });
         await locator.check();
     }
 
@@ -124,7 +126,7 @@ export class BasePage {
         await dropdown.click();
         await this.page.getByText(option, { exact: true }).click();
     }
-    
+
     // Return True  when the locator is toBeVisible
     async toBeVisible(locator: Locator) {
         return await expect(locator).toBeVisible();

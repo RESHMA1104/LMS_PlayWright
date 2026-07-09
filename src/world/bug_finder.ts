@@ -17,6 +17,7 @@ import { CourseFilter } from '../test/pages/courseFilterPage';
 
 import { AddService } from '../test/pages/AddnewService';
 import { ServieEdit } from '../test/pages/ServiceEditPage';
+import { deleteService } from '../test/pages/deteteServicepage';
 
 
 // CustomWorld extends World
@@ -31,7 +32,7 @@ export class BugFinder extends World {
     addCoursePage!: AddCourse;
     editPage!: EditPage;
     courseFilter!:CourseFilter;
-    AddSimilarCourses! :AddSimilarCourse
+    deleteService!:deleteService;
     AddService! : AddService
     ServieEdit! : ServieEdit
     

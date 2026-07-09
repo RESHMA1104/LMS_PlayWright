@@ -1,4 +1,4 @@
-@Tamilarasu
+@Tamilarasu @Main
 Feature: Tamilarasu K Add Similar Course 7-07-2026
 
 Background:

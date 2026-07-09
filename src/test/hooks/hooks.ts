@@ -18,6 +18,7 @@ import { AddSimilarCourse } from '../pages/AddSimilarCoursepage';
 import { AddService } from '../pages/AddnewService';
 import { ServieEdit } from "../pages/ServiceEditPage";
 import { DeletePage } from "../pages/DeleteCoursePage";
+import { DynamicFieldManagement } from "../pages/dynamicfieldmanagementpage";
 
 // Default Timeout
 setDefaultTimeout(180 * 1000);
@@ -28,7 +29,7 @@ let browser: Browser;
 BeforeAll(async () => {
 
     browser = await chromium.launch({
-        headless: false
+        headless: true
     })
 })
 
@@ -56,6 +57,7 @@ Before(async function (this: BugFinder) {
     this.AddService = new AddService(this.page);
     this.ServieEdit = new ServieEdit(this.page);
     this.deletePage = new DeletePage(this.page);
+    this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);
 })
 
 // If the test Failed ScreenShot capture 

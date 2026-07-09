@@ -19,6 +19,7 @@ import { AddSimilarCourse } from '../test/pages/AddSimilarCoursepage';
 import { AddService } from '../test/pages/AddnewService';
 import { ServieEdit } from '../test/pages/ServiceEditPage';
 import { DeletePage } from '../test/pages/DeleteCoursePage';
+import type { DynamicFieldManagement } from '../test/pages/dynamicfieldmanagementpage';
 
 
 // CustomWorld extends World
@@ -39,6 +40,12 @@ export class BugFinder extends World {
     ServieEdit! : ServieEdit
     deletePage!: DeletePage
     
+    courseFilter!: CourseFilter;
+    AddSimilarCourses!: AddSimilarCourse
+    AddService!: AddService
+    ServieEdit!: ServieEdit
+    dynamicfieldmanagementPage!: DynamicFieldManagement;
+
 
 }
 

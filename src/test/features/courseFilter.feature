@@ -1,4 +1,4 @@
-@haritha
+@haritha @Main
 Feature: Haritha_07_july_2026 Filter Functionality
 
 Background:

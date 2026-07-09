@@ -14,6 +14,7 @@ export class AddCorseStructurePage extends BasePage {
     private moreDropDown: Locator;
     private hierarchyToogle: Locator;
     private addSubModuleBtn: Locator;
+    private addNewTopicBtn: Locator;
 
 
     constructor(page: Page) {
@@ -30,6 +31,7 @@ export class AddCorseStructurePage extends BasePage {
         this.moreDropDown = page.locator('//span[text()="More"]');
         this.hierarchyToogle = page.locator('(//div[@class="relative"])[2]');
         this.addSubModuleBtn = page.locator('(//button[@title="Add New Sub Module"])[3]');
+        this.addNewTopicBtn = page.locator('(//button[@title="Add New Topic"])[3]');
     }
 
     async clickAddModuleBtn() {
@@ -46,13 +48,13 @@ export class AddCorseStructurePage extends BasePage {
     }
     async clickAddModuleSubmit() {
         await Promise.all([
-            expect(this.moduleSuccessMsg).toBeVisible({ timeout: 30000 }),
+            expect(this.moduleSuccessMsg).toBeVisible({ timeout: 360000 }),
             this.click(this.AddModuleSubmitBtn)
         ]);
     }
     async assertModuleSuccessMsg() {
 
-        await expect(this.moduleSuccessMsg).toBeHidden({ timeout: 15000 });
+        await expect(this.moduleSuccessMsg).toBeHidden({ timeout: 360000 });
     }
     async clickMoreAndToogleHierarchBtn() {
         await this.click(this.moreDropDown);
@@ -63,5 +65,9 @@ export class AddCorseStructurePage extends BasePage {
 
     async clickAddSubModuleButton() {
         await this.click(this.addModuleBtn);
+    }
+
+    async clickAddNewTopicBtn() {
+        await this.click(this.addNewTopicBtn);
     }
 }

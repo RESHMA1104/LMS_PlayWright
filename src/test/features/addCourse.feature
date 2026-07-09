@@ -18,7 +18,6 @@ Feature: Course Creation
              Then a warning message should be displayed
 
 
-
         Scenario: Enter valid course basic configuration details
              
              When the user selects dropdown-values from the dropdown
@@ -39,7 +38,7 @@ Feature: Course Creation
               And the user is leaves mandatory fields as empty and click the preview & create button
 
 
-        Scenario: invalid image format sending
+        Scenario: Invalid image format sending
             Given the user has completed the course basic configuration
               And the user uploads the invalid images it need to show an invalid image format
 
@@ -49,3 +48,20 @@ Feature: Course Creation
               And the user add the pedagogy values for I Do,We Do and you Do
               And the user selects Resource type values for I Do, We Do and You Do
              Then the select Resource Type value should be on state
+
+
+        Scenario: Creating a new Course End-to-End valid
+            Given the user has completed the course basic configuration
+              And the user selects the course name
+              And the user adds the course level
+              And the user uploads the course image
+              And the user enters the course description
+              And the user chooses the course hierarchy
+              And the user add the pedagogy values for I Do,We Do and you Do
+              And the user selects Resource type values for I Do, We Do and You Do
+             Then the select Resource Type value should be on state
+              And the user chooses the skill set
+              And the user clicks preview & create
+             Then the course layout preview should be visible
+              And the user clicks the save course layout button
+              And the user clicks "Yes, Add now" to confirm

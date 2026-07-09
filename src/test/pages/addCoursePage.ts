@@ -18,13 +18,28 @@ export class AddCourse extends BasePage {
   private invalidImageToast: Locator;
   private imageupload: Locator;
 
-  private previewCreateBtn: Locator;  
+  private previewCreateBtn: Locator;
   private courseImage: Locator;
   private resourcetypeBtn: Locator;
   private iDoBtn: Locator;
-  private weDobtn : Locator;
+  private weDobtn: Locator;
   private youDo: Locator;
-  private onState: Locator
+  private onState: Locator;
+
+  private courseId: Locator;
+  private description: Locator;
+  private moduleClick: Locator;
+  private submoduleClick: Locator;
+  private topicClick: Locator;
+  private skillSet: Locator;
+  private saveBtn: Locator;
+
+  // NOTE: the following locators are best-guess placeholders based on the
+  // naming conventions already used in this file (getByText / getByRole).
+  // Replace the selector strings with the real ones from the app if they
+  // don't match once you run the tests.
+  private courseLayoutPreviewHeading: Locator;
+  private yesAddNowBtn: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -50,7 +65,9 @@ export class AddCourse extends BasePage {
     this.invalidImageToast = page.getByText(
       'Only JPEG, JPG, PNG, and WebP formats are allowed'
     );
-    this.previewCreateBtn = page.locator("//div[@class = 'flex gap-1.5']//button[text() = 'Preview & Create']")
+    this.previewCreateBtn = page.locator(
+      "//div[@class = 'flex gap-1.5']//button[text() = 'Preview & Create']"
+    );
     this.courseImage = page.getByText('Course Image');
 
     this.resourcetypeBtn = page.locator("//button[@role='switch']");
@@ -59,6 +76,21 @@ export class AddCourse extends BasePage {
     this.youDo = page.getByRole('button', { name: 'You Do' });
 
     this.onState = page.locator("//span[text()= 'On']");
+
+    this.courseId = page.locator('//input[@readonly]').first();
+    this.description = page.locator("//div[@contenteditable = 'true']//p");
+    this.moduleClick = page.locator("//input[@id = 'module-checkbox']");
+    this.submoduleClick = page.locator("//input[@id = 'submodule-checkbox']");
+    this.topicClick = page.locator("//input[@id = 'topic-checkbox']");
+
+    this.skillSet = page.locator(
+      "//div[@class = 'flex flex-wrap gap-2 pl-6']//input[@type = 'checkbox']"
+    );
+
+    this.saveBtn = page.locator("//button[text() = ' Save Course Layout']");
+
+    this.courseLayoutPreviewHeading = page.getByText('Course Layout Preview');
+    this.yesAddNowBtn = page.getByRole('button', { name: 'Yes, Add now' });
   }
 
   async commonMethod() {
@@ -122,7 +154,6 @@ export class AddCourse extends BasePage {
     ).toBeVisible();
   }
 
-
   async click_preview_create() {
     await this.previewCreateBtn.click();
   }
@@ -149,39 +180,158 @@ export class AddCourse extends BasePage {
     await expect(this.invalidImageToast).toBeVisible({ timeout: 10000 });
   }
 
- async resourceTypeAdd(buttons: number[], resourceName: string) {
-  if (resourceName === 'I Do') {
-    await this.iDoBtn.click();
-  } else if (resourceName === 'We Do') {
-    await this.weDobtn.click();
-  } else if (resourceName === 'You Do') {
-    await this.youDo.click();
-  } else {
-    throw new Error(`Invalid resource name: ${resourceName}`);
-  }
-
-  for (const index of buttons) {
-    const toggle = this.resourcetypeBtn.nth(index);
-
-    const isOn = await toggle.getAttribute('aria-checked');
-
-    if (isOn !== 'true') {
-      await toggle.click();
+  async resourceTypeAdd(buttons: number[], resourceName: string) {
+    if (resourceName === 'I Do') {
+      await this.iDoBtn.click();
+    } else if (resourceName === 'We Do') {
+      await this.weDobtn.click();
+    } else if (resourceName === 'You Do') {
+      await this.youDo.click();
+    } else {
+      throw new Error(`Invalid resource name: ${resourceName}`);
     }
 
-    await expect(toggle).toHaveAttribute('aria-checked', 'true', {
+    for (const index of buttons) {
+      const toggle = this.resourcetypeBtn.nth(index);
+
+      const isOn = await toggle.getAttribute('aria-checked');
+
+      if (isOn !== 'true') {
+        await toggle.click();
+      }
+
+      await expect(toggle).toHaveAttribute('aria-checked', 'true', {
+        timeout: 10000,
+      });
+
+      console.log(resourceName, index);
+    }
+  }
+
+  async validateResourceTypeOnState() {
+    const selectedSwitches = this.page.locator(
+      "button[role='switch'][aria-checked='true']"
+    );
+
+    await expect(selectedSwitches).toHaveCount(1);
+  }
+
+  // ---- Newly added methods to support the missing feature steps ----
+
+  /**
+   * Selects the course name from a combobox dropdown, same pattern as
+   * selectDropdown/selectMultiDropdownPedagogy, driven by Sheet3 of
+   * CourseData.xlsx.
+   */
+  async selectCourseName(index: number, value: string) {
+    await this.selectDropdown(index, value);
+  }
+
+  /**
+   * Selects the course level. Placeholder assumes course level is
+   * presented as a clickable button/chip labelled with the level name
+   * (e.g. "Beginner", "Intermediate", "Advanced"). Update the selector
+   * if the real UI differs (e.g. a combobox instead).
+   */
+  async selectCourseLevel(value: string) {
+    const levelOption = this.page.getByRole('button', { name: value });
+    await this.click(levelOption);
+    await expect(levelOption).toBeVisible();
+  }
+
+  /**
+   * Uploads a valid course image (jpg/png/webp) via the same file input
+   * used by invalid_image().
+   */
+  async uploadCourseImage(fileName: string) {
+    const filePath = path.resolve(process.cwd(), 'test-data', fileName);
+    await this.imageupload.setInputFiles(filePath);
+  }
+
+  /**
+   * Enters the course description text.
+   */
+  async enterCourseDescription(text: string) {
+    await this.fill(this.description, text);
+    await this.toBeVisible(this.description);
+  }
+
+  /**
+   * Selects module, submodule and topic checkboxes that make up the
+   * course hierarchy.
+   */
+  async selectCourseHierarchy() {
+    await this.click(this.moduleClick);
+    await this.click(this.submoduleClick);
+    await this.click(this.topicClick);
+  }
+
+  /**
+   * Selects skill set checkboxes by index.
+   */
+  async selectSkillSet(indices: number[]) {
+    for (const i of indices) {
+      await this.click(this.skillSet.nth(i));
+    }
+  }
+
+  /**
+   * Confirms the "Course Layout Preview" panel/modal is visible after
+   * clicking Preview & Create.
+   */
+  async validateCourseLayoutPreview() {
+    await expect(this.courseLayoutPreviewHeading).toBeVisible({
       timeout: 10000,
     });
-
-    console.log(resourceName, index);
   }
-}
 
-async validateResourceTypeOnState() {
-  const selectedSwitches = this.page.locator("button[role='switch'][aria-checked='true']");
+  /**
+   * Clicks the "Save Course Layout" button.
+   */
+  async clickSaveCourseLayout() {
+    await this.click(this.saveBtn);
+  }
 
-  await expect(selectedSwitches).toHaveCount(1);
-}
+  /**
+   * Waits for the "Yes, Add now" confirmation button to be visible and
+   * clicks it to finish course creation.
+   */
+  async confirmAddCourse() {
+    await expect(this.yesAddNowBtn).toBeVisible({ timeout: 10000 });
+    await this.click(this.yesAddNowBtn);
+  }
 
+  /**
+   * Optional convenience method that chains the individual steps above
+   * into a single end-to-end flow. Not wired up to any Cucumber step by
+   * default (the feature file drives the granular methods instead), but
+   * kept - now with valid syntax - in case it's useful for a
+   * non-BDD/smoke test.
+   */
+  async endtoend(
+    dropdownIndex: number,
+    dropdownValue: string,
+    description: string,
+    skillset: number[],
+    resourceTypes: { buttons: number[]; resourceName: string }[]
+  ) {
+    await this.selectDropdown(dropdownIndex, dropdownValue);
 
+    const filePath = path.resolve(process.cwd(), 'test-data', 'batman.jpg');
+    await this.imageupload.setInputFiles(filePath);
+
+    await this.enterCourseDescription(description);
+
+    await this.selectCourseHierarchy();
+
+    for (const resource of resourceTypes) {
+      await this.resourceTypeAdd(resource.buttons, resource.resourceName);
+    }
+
+    await this.selectSkillSet(skillset);
+
+    await this.click_preview_create();
+
+    await this.click(this.saveBtn);
+  }
 }

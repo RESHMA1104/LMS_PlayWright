@@ -5,7 +5,8 @@
     },
     "courseEdit":{
       "CourseName": "Bug-Finder",
-      "Service Model": "TD",
+      "Service Type":"Testing Model",
+      "Service Model": "Tester",
       "Course Client": "jamocha",
       "Success": "Course updated successfully"
     },

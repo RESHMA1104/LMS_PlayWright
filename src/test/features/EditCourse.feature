@@ -36,9 +36,16 @@ Examples:
   | Live Classes      |   Lab          |   Assesments   |
   | kps               |   Practical    |   Exercise     |
 
-Scenario: Edit the skill set details
+Scenario: Edit the skill set details in Course Hierarchy
 Given user has completed the Basic Configuration page
 When user clicks the Next button
 And user selects the required skill set
+And user clicks the Preview and Update button
+Then user should see the course updated successfully message
+
+Scenario: Edit the resource type in Course Hierarchy
+Given user has completed the Basic Configuration page
+When user clicks the Next button
+And user selects the required resource types for I Do, We Do, and You Do
 And user clicks the Preview and Update button
 Then user should see the course updated successfully message

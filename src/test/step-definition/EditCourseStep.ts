@@ -30,6 +30,7 @@ Then('user selects the edit option', async function (this: BugFinder) {
 When('user updates the required course details', async function (this: BugFinder) {
     logger.info("Updating the required course details");
     await this.editPage.CourseClient();
+    await this.editPage.ServiceType();
     await this.editPage.ServiceModel();
     logger.info("Course details updated successfully");
 });
@@ -90,10 +91,20 @@ When('user selects {string} in the You Do pedagogy', async function (this: BugFi
 
 When('user selects the required skill set', async function (this: BugFinder) {
     logger.info("Selecting the required skill set from Excel data");
-    const addSkillData = ExcelReader.read("test-data\\CourseData.xlsx", "Sheet3");
+    const addSkillData = ExcelReader.read("test-data\\CourseEdit.xlsx", "Sheet1");
     for (const row of addSkillData) {
         logger.info(`Selecting skill: ${row.skill}`);
         await this.editPage.SkillsetAdd(row.skill);
         logger.info(`Successfully selected skill: ${row.skill}`);
-    }
+    }   
+});
+
+When('user selects the required resource types for I Do, We Do, and You Do', async function (this: BugFinder) {
+    logger.info("Selecting the required types from Excel data");
+    const requiredData = ExcelReader.read("test-data\\CourseEdit.xlsx", "Sheet2");
+    for (const row of requiredData) {
+        logger.info(`Selecting Required Data: ${row.required}`);
+        await this.editPage.RequiredType(row.required);
+        logger.info(`Successfully updated required: ${row.required}`);
+    }   
 });

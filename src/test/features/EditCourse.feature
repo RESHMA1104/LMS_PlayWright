@@ -35,3 +35,10 @@ Examples:
   | IDo               |  WeDo          |   YouDo        | 
   | Live Classes      |   Lab          |   Assesments   |
   | kps               |   Practical    |   Exercise     |
+
+Scenario: Edit the skill set details
+Given user has completed the Basic Configuration page
+When user clicks the Next button
+And user selects the required skill set
+And user clicks the Preview and Update button
+Then user should see the course updated successfully message

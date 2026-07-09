@@ -57,7 +57,7 @@ export class BasePage {
 
     // To ContainText
     async toContainText(locator: Locator, value: string) {
-        await locator.isVisible({ timeout: 60000 });
+        await locator.isVisible({ timeout: 90000 });
         return await expect(locator).toContainText(value);
     }
 

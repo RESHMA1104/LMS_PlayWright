@@ -1,6 +1,7 @@
 import { BugFinder } from "../../world/bug_finder";
 import { Given, When, Then } from "@cucumber/cucumber";
 import { logger } from "../../utils/logger";
+import { ExcelReader } from "../../utils/excelReader";
 
 Then('user navigates to the Course Management page', async function (this: BugFinder) {
     logger.info("Navigating to Course Management page");
@@ -85,4 +86,14 @@ When('user selects {string} in the You Do pedagogy', async function (this: BugFi
     logger.info(`Selecting "${youdo}" in the You Do pedagogy`);
     await this.editPage.selectYouDo(youdo);
     logger.info(`"${youdo}" selected successfully in the You Do pedagogy`);
+});
+
+When('user selects the required skill set', async function (this: BugFinder) {
+    logger.info("Selecting the required skill set from Excel data");
+    const addSkillData = ExcelReader.read("test-data\\CourseData.xlsx", "Sheet3");
+    for (const row of addSkillData) {
+        logger.info(`Selecting skill: ${row.skill}`);
+        await this.editPage.SkillsetAdd(row.skill);
+        logger.info(`Successfully selected skill: ${row.skill}`);
+    }
 });

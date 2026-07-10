@@ -1,4 +1,4 @@
-@Service
+@Service @Main
 Feature: Tamilarasu_08_07_2026_Client_Client Management
 
   Background:

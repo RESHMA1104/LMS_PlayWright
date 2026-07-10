@@ -6,6 +6,10 @@ When('user searches for the course to delete', async function (this:BugFinder) {
     await this.deletePage.Searchcrse();
 });
 
+When('user opens the course menu to delete the course', async function (this:BugFinder) {
+    await this.deletePage.CourseMenu();
+});
+
 When('user selects the delete option', async function (this:BugFinder) {
     await this.deletePage.ConfirmDelete();
 });

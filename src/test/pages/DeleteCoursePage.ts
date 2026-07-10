@@ -7,17 +7,23 @@ export class DeletePage extends BasePage{
     private searchbx : Locator;
     private deletebtn : Locator;
     private deletecrse : Locator;
+    private deletemenu : Locator;
 
 constructor(page:Page){
         super(page);
         this.page = page;
         this.searchbx = page.locator('//input[@placeholder="Search courses, codes, clients, or categories..."]')
         this.deletebtn = page.locator('//button[text()="Delete Course"]');
-        this.deletecrse = page.locator('//button[@fdprocessedid="nltszq"]');
+        this.deletecrse = page.locator('//button[text()="Delete Course"]');
+        this.deletemenu = page.locator('.dark:hover:bg-gray-700 border');
     }
 
     async Searchcrse(){
         await this.fill(this.searchbx, loginData.courseDelete.CourseName);
+    }
+
+    async CourseMenu(){
+        await this.click(this.deletemenu);
     }
 
     async DeleteCourse() {

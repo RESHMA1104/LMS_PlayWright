@@ -74,6 +74,7 @@ export class EditPage extends BasePage{
     }
 
     async EditMenubtn(){
+        await this.editmenu.waitFor({ state: 'visible', timeout: 120000 });
         await this.click(this.editmenu);
     }
 

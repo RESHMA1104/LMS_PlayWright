@@ -12,11 +12,11 @@
     },
       
     "courseValidation": {
-      "CourseCategory": "LMS testing",
+      "CourseCategory": "Software Development",
       "ValidationMessage": "Please enter a course name"
     },
     "courseDelete": {
-      "CourseName": "DEEPLEARNING"
+      "CourseName": "PAP"
     }
 }
 

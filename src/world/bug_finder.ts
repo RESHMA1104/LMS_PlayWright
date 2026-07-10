@@ -1,6 +1,3 @@
-
-
-
 /*/*
     CustomWorld Creation to use cross the Project 
 */
@@ -14,13 +11,15 @@ import { AddCorseStructurePage } from '../test/pages/addcoursestructurepage';
 import type { AddCourse } from '../test/pages/addCoursePage';
 import { EditPage } from '../test/pages/EditCoursePage';
 import { CourseFilter } from '../test/pages/courseFilterPage';
+
+import { AddService } from '../test/pages/AddnewService';
 import { ServieEdit } from '../test/pages/ServiceEditPage';
 import { DeletePage } from '../test/pages/DeleteCoursePage';
 import { deleteService } from '../test/pages/deteteServicepage';
 
 import type { DynamicFieldManagement } from '../test/pages/dynamicfieldmanagementpage';
-import type { AddService } from '../test/pages/AddnewService';
-
+// import type { AddService } from '../test/pages/AddnewService';
+import { Addclient } from '../test/pages/AddClient';
 
 
 // CustomWorld extends World
@@ -34,13 +33,15 @@ export class BugFinder extends World {
     addcoursestructurePage!: AddCorseStructurePage;
     addCoursePage!: AddCourse;
     editPage!: EditPage;
-    courseFilter!: CourseFilter;
-    //AddSimilarCourses!: AddSimilarCourse;
-    AddService!: AddService;
-    ServieEdit!: ServieEdit
+    courseFilter!:CourseFilter;
+    
+    AddService! : AddService
+    ServieEdit! : ServieEdit
     deletePage!: DeletePage
+    
     dynamicfieldmanagementPage!: DynamicFieldManagement;
     deleteService!: deleteService;
+    Addclient!:Addclient;
 
 
 }

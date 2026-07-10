@@ -55,7 +55,7 @@ Then('The Course Category Should Be Deleted', async function (this: BugFinder) {
 
     await this.dynamicfieldmanagementPage.deleteCheck(deletedCourseCategoryName, searchValue.searchValue);
     logger.info(`Verified deleted course category is not displayed: ${deletedCourseCategoryName}`);
-  
+});
 When('The User Clicks on Course Category in Slider', async function (this: BugFinder) {
     await this.dynamicfieldmanagementPage.clickCourseCaetogrySlider();
 });

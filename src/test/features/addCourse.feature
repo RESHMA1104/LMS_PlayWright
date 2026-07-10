@@ -1,4 +1,4 @@
-@Prasanna
+@Prasanna @Main
 Feature: Course Creation
 
               As an LMS Administrator

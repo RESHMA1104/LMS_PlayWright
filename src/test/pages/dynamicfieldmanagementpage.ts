@@ -91,7 +91,7 @@ export class DynamicFieldManagement extends BasePage {
         await this.click(this.courseCategory);
         await this.fill(this.searchBarCategory, value);
         await this.pressEnter(this.searchBarCategory);
-        await this.allCourseName.waitFor({ state: 'visible', timeout: 120000 });
+        await this.allCourseName.first().waitFor({ state: 'visible', timeout: 120000 });
         const courseNames = await this.allCourseName.allTextContents();
 
         for (const actualName of courseNames) {

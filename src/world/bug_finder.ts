@@ -34,7 +34,7 @@ export class BugFinder extends World {
     addCoursePage!: AddCourse;
     editPage!: EditPage;
     courseFilter!: CourseFilter;
-    AddSimilarCourses!: AddSimilarCourse
+    // AddSimilarCourses!: AddSimilarCourse
     AddService!: AddService
     ServieEdit!: ServieEdit
     dynamicfieldmanagementPage!: DynamicFieldManagement;

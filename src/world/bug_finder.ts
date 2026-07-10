@@ -41,7 +41,7 @@ export class BugFinder extends World {
     ServieEdit! : ServieEdit
     deletePage!: DeletePage
     dynamicfieldmanagementPage!: DynamicFieldManagement;
-    deleteService!:deleteService;
+    deleteService!: deleteService;
 
 
 }

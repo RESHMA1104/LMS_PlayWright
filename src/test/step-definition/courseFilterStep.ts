@@ -83,12 +83,42 @@ When("User filters the courses using excel data", async function (this: BugFinde
     await this.courseFilter.selectSortBy(row.sortBy);
 
     await this.courseFilter.verifyFilterResults(row.category, row.level);
+   
 
-    logger.info("Filter verification completed successfully");
+    //logger.info("Filter verification completed successfully");
 
-    await this.courseFilter.clickfilter();
+   // await this.courseFilter.clickfilter();
     await this.courseFilter.clickclearfilter();
 }
 
     logger.info("All filter scenarios executed successfully");
+});
+
+When("User verifies the pagination functionality", async function (this: BugFinder) {
+    await this.courseFilter.verifyPagination();
+});
+
+Then("Each page should display a maximum of {int} course records", async function (this: BugFinder, count: number) {
+    await this.courseFilter.verifyRecordsPerPage(count);
+});
+
+Then("The pagination count should match the displayed records", async function (this: BugFinder) {
+    await this.courseFilter.verifyPaginationCount();
+});
+
+Then("The current page number should be highlighted", async function (this: BugFinder) {
+    await this.courseFilter.verifyCurrentPageHighlighted(1);
+});
+
+Then("Previous and Next buttons should be displayed correctly", async function (this: BugFinder) {
+    await this.courseFilter.verifyPreviousNextButtons();
+});
+
+When("User verifies next page navigation", async function (this: BugFinder) {
+
+    logger.info("Verifying pagination navigation");
+
+    await this.courseFilter.verifyNextPageNavigation();
+
+    logger.info("Pagination navigation verified successfully");
 });

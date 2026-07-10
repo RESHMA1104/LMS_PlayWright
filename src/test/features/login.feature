@@ -17,6 +17,19 @@ Feature: Haritha_07-july-2026 Login functionality
     Then User should see the appropriate error "<message>"
 
     Examples:
-      | email                | password | message               |
-      | testing@gmail.com    | test     | Password is incorrect |
-      | testing123@gmail.com |      123 | Email is invalid      |
+      | email                | password | message                      |
+      | testing@gmail.com    | test     | Password is incorrect        |
+      | testing123@gmail.com | 123      | Email is invalid             |
+      |                      | test123  | Please fill out this field.  |
+      | testing@gmail.com    |          | Please fill out this field.  |
+      |                      |          | Please fill out this field.  |
+
+  Scenario: logout succesfully
+    When User enter the valid email
+    When User enter the valid password
+    When User clicks the Sign button
+    Then User should navigate to the Dashboard page
+    When User click the profile button
+    When User click the sigout button
+    Then user should navigate to login page
+

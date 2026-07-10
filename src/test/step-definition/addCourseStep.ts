@@ -172,6 +172,10 @@ When(
         logger.info(`Selected pedagogy '${value}' from dropdown index '${index}'`);
       }
 
+      // Close any leftover open multi-select listbox so it doesn't
+      // overlap/intercept clicks on elements rendered below it.
+      await this.addCoursePage.closeOpenPedagogyDropdown();
+
       logger.info('Pedagogy values selected successfully');
     } catch (error) {
       logger.error(`Pedagogy selection failed : ${error}`);
@@ -248,6 +252,11 @@ When(
 
         logger.info(`Selected pedagogy '${value}' from dropdown index '${index}'`);
       }
+
+      // Close any leftover open multi-select listbox so it doesn't
+      // overlap/intercept clicks on the Resource Type buttons rendered
+      // below the Pedagogy section.
+      await this.addCoursePage.closeOpenPedagogyDropdown();
 
       logger.info('Pedagogy values selected successfully');
     } catch (error) {

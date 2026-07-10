@@ -17,6 +17,7 @@ import { CourseFilter } from '../test/pages/courseFilterPage';
 import type { AddSimilarCourse } from '../test/pages/AddSimilarCoursepage';
 import { AddService } from '../test/pages/AddnewService';
 import { ServieEdit } from '../test/pages/ServiceEditPage';
+import { DeletePage } from '../test/pages/DeleteCoursePage';
 import { deleteService } from '../test/pages/deteteServicepage';
 
 import type { DynamicFieldManagement } from '../test/pages/dynamicfieldmanagementpage';
@@ -34,6 +35,12 @@ export class BugFinder extends World {
     addcoursestructurePage!: AddCorseStructurePage;
     addCoursePage!: AddCourse;
     editPage!: EditPage;
+    courseFilter!:CourseFilter;
+    AddSimilarCourses! :AddSimilarCourse
+    AddService! : AddService
+    ServieEdit! : ServieEdit
+    deletePage!: DeletePage
+    
     courseFilter!: CourseFilter;
     AddSimilarCourses!: AddSimilarCourse
     AddService!: AddService

@@ -14,6 +14,9 @@
     "courseValidation": {
       "CourseCategory": "LMS testing",
       "ValidationMessage": "Please enter a course name"
+    },
+    "courseDelete": {
+      "CourseName": "DEEPLEARNING"
     }
 }
 

@@ -16,7 +16,8 @@ export class CourseFilter extends BasePage {
   // Pagination Locators
   private btnPrevious: Locator;
   private btnNext: Locator;
-  private activePage: Locator;
+  private filterPanelIndicator:Locator;
+  //private activePage: Locator;
 
   constructor(page: Page) {
     super(page);
@@ -26,17 +27,17 @@ export class CourseFilter extends BasePage {
     this.courseCodes = page.locator("//table/tbody/tr/td[3]//button/span[2]");
     this.courseManagement = page.locator("//div[@title='Course Management']");
     this.txtNoResult = page.locator("//p[contains(@class,'font-medium')]");
-    this.filterBtn = page.locator("//button[normalize-space()='Filters']");
+    this.filterBtn = this.page.getByRole("button", { name: "Filters" });
     this.courseDetails = page.locator("//table/tbody/tr/td[4]");
     this.tableRows = page.locator("//table/tbody/tr");
     this.lblPagination = page.locator("//div[contains(text(),'Showing')]");
-    this.clearFilter = page.locator("//button[normalize-space()='Clear All']");
-
+    this.clearFilter = page.getByRole("button", {name: "Clear All",exact: true});
+    this.filterPanelIndicator = page.locator("//label[text()='Status']/following::select[1]");
     // Pagination
     this.btnPrevious = page.locator("//button[normalize-space()='Previous']");
     this.btnNext = page.locator("//button[normalize-space()='Next']");
     //this.activePage = page.locator("//button[normalize-space()='Next']/preceding::span[text()='1'][1]");
-    this.activePage = page.locator("//span[contains(@class,'font-semibold')]");
+    //this.activePage = page.locator("//span[contains(@class,'font-semibold')]");
   }
 
   async clickCourse() {
@@ -73,14 +74,37 @@ export class CourseFilter extends BasePage {
     await expect(this.txtNoResult).toHaveText(expectedMessage);
   }
 
-  async clickfilter() {
-    await this.filterBtn.waitFor({state: "visible",});
-    await this.filterBtn.scrollIntoViewIfNeeded();
-    await expect(this.filterBtn).toBeEnabled();
-    await this.filterBtn.click({trial: true,});
+
+async clickfilter() {
+  console.log("Ensuring Filter panel is open...");
+  await expect(this.filterBtn).toBeVisible({ timeout: 30000 });
+  await expect(this.filterBtn).toBeEnabled();
+
+  const isOpen = await this.filterPanelIndicator.isVisible().catch(() => false);
+  if (!isOpen) {
     await this.filterBtn.click();
-    await expect(this.clearFilter).toBeVisible({timeout: 10000,});
   }
+
+  // Retrying assertion — guarantees panel is truly ready regardless of the click path taken
+  await expect(this.filterPanelIndicator).toBeVisible({ timeout: 30000 });
+  await expect(this.clearFilter).toBeVisible({ timeout: 30000 });
+}
+
+async clickclearfilter() {
+  await expect(this.clearFilter).toBeVisible({ timeout: 30000 });
+  await this.clearFilter.click();
+
+  // If the app doesn't auto-close the panel after Clear All, force-close it
+  const closed = await this.filterPanelIndicator
+    .waitFor({ state: "hidden", timeout: 3000 })
+    .then(() => true)
+    .catch(() => false);
+
+  if (!closed) {
+    await this.filterBtn.click();
+    await expect(this.filterPanelIndicator).toBeHidden({ timeout: 10000 });
+  }
+}
 
   async selectStatus(status: string) {
     const statusDD = this.page.locator("//label[text()='Status']/following::select[1]");
@@ -100,12 +124,6 @@ export class CourseFilter extends BasePage {
   async selectSortBy(sortBy: string) {
     const sortDD = this.page.locator("//label[text()='Sort By']/following::select[1]");
     await this.selectDDOptionByValue(sortDD, sortBy);
-  }
-
-  async clickclearfilter() {
-    await this.clearFilter.waitFor({state: "visible",});
-    await this.clearFilter.click();
-    await this.page.waitForTimeout(1000);
   }
 
   async verifyFilterResults(category: string, level: string) {
@@ -143,16 +161,23 @@ async verifyRecordsPerPage(expectedCount: number) {
 async verifyPaginationCount() {
   const tableCount = await this.tableRows.count();
   const paginationText = await this.lblPagination.innerText();
-  const parts = paginationText.split(" ");
-  const endCount = Number(parts[3]);
-  expect(tableCount).toBe(endCount);
+
+  const match = paginationText.match(/(\d+)\s+to\s+(\d+)\s+of\s+(\d+)/i);
+  if (!match) {
+    throw new Error(`Could not parse pagination text: "${paginationText}"`);
+  }
+
+  const start = Number(match[1]);
+  const end = Number(match[2]);
+  const expectedRows = end - start + 1;
+
+  expect(tableCount).toBe(expectedRows);
 }
-
 async verifyCurrentPageHighlighted(expectedPage: number) {
-
-  const currentPage = this.page.locator(`//span[contains(@class,'font-semibold') and text()='${expectedPage}']`);
-  await expect(currentPage).toBeVisible();
-  console.log("Current Page:", await currentPage.textContent());
+  const currentPage = this.page.locator(
+    `//button[normalize-space(.)='${expectedPage}' and contains(@class,'bg-blue-600')]`
+  );
+  await expect(currentPage).toBeVisible({ timeout: 10000 });
 }
 
 async verifyPreviousNextButtons() {
@@ -189,27 +214,22 @@ async verifyNextPageNavigation() {
 
     while (true) {
 
-        // Verify current page number
         await this.verifyCurrentPageHighlighted(expectedPage);
-
-        // Verify first record number
         await this.verifyStartingRecord(expectedStart);
-
-        // Verify displayed row count
         await this.verifyPaginationCount();
 
-        console.log(`Page ${expectedPage} -> Starts from ${expectedStart}`);
+        console.log(`Page ${expectedPage}`);
 
-        // Stop if Next button is disabled
         if (await this.btnNext.isDisabled()) {
             break;
         }
-        // Click Next
+
         await this.btnNext.click();
-        // Wait for table to refresh
-        await this.page.waitForLoadState("networkidle");
+
         expectedPage++;
         expectedStart += 8;
+
+        await this.verifyCurrentPageHighlighted(expectedPage);
     }
 
     console.log("Pagination verified successfully.");

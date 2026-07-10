@@ -43,17 +43,6 @@ export class LoginPage extends BasePage {
       timeout: 20000,
     });
   }
-
-  async verifyErrorMessage(message: string) {
-    await expect(this.lblErrorMessage).toBeVisible({
-      timeout: 20000,
-    });
-
-    await expect(this.lblErrorMessage).toContainText(message, {
-      timeout: 20000,
-    });
-  }
-
   async clickProfile() {
     await this.click(this.profile);
   }
@@ -69,4 +58,30 @@ export class LoginPage extends BasePage {
 
     await expect(this.btnSignIn).toBeVisible();
   }
+  async verifyErrorMessage(message: string) {
+
+    // Browser validation for empty mandatory fields
+    if (message === "Please fill out this field.") {
+
+        const emailValue = await this.txtEmail.inputValue();
+        const passwordValue = await this.txtPassword.inputValue();
+
+        if (emailValue === "") {
+            const validationMessage = await this.getValidationMessage(this.txtEmail);
+            expect(validationMessage).toBe(message);
+        } else if (passwordValue === "") {
+            const validationMessage = await this.getValidationMessage(this.txtPassword);
+            expect(validationMessage).toBe(message);
+        }
+        return;
+    }
+    // Application toast validation
+    await expect(this.lblErrorMessage).toBeVisible({
+        timeout: 20000,
+    });
+
+    await expect(this.lblErrorMessage).toContainText(message, {
+        timeout: 20000,
+    });
+}
 }

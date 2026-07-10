@@ -39,6 +39,4 @@ Scenario: Verify pagination functionality
     And Previous and Next buttons should be displayed correctly
 
 Scenario: Verify Next Page Navigation
-
-    And user navigate to course management page
     When User verifies next page navigation

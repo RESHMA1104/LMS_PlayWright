@@ -83,10 +83,11 @@ When("User filters the courses using excel data", async function (this: BugFinde
     await this.courseFilter.selectSortBy(row.sortBy);
 
     await this.courseFilter.verifyFilterResults(row.category, row.level);
+   
 
-    logger.info("Filter verification completed successfully");
+    //logger.info("Filter verification completed successfully");
 
-    await this.courseFilter.clickfilter();
+   // await this.courseFilter.clickfilter();
     await this.courseFilter.clickclearfilter();
 }
 

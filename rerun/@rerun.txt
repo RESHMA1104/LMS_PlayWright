@@ -1,3 +1,0 @@
-src\test\features\DeleteCourse.feature:11
-src\test\features\AddService.feature:59
-src\test\features\courseCategory.feature:26

@@ -52,7 +52,6 @@ Feature: Course Creation
 
         Scenario: Creating a new Course End-to-End valid
             Given the user has completed the course basic configuration
-              And the user selects the course name
               And the user adds the course level
               And the user uploads the course image
               And the user enters the course description

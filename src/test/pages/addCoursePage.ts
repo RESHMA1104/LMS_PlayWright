@@ -45,7 +45,7 @@ export class AddCourse extends BasePage {
     super(page);
 
     this.courseManagement = page.locator("//div[@title='Course Management']");
-    this.addCourse = page.getByRole('button', { name: 'Add Course' });
+    this.addCourse = page.getByRole('button', { name: 'Add Course', exact: true });
     this.nextBtn = page.getByRole('button', { name: 'Next' });
 
     this.clientError = page.getByText('Please select a client');
@@ -219,24 +219,13 @@ export class AddCourse extends BasePage {
   // ---- Newly added methods to support the missing feature steps ----
 
   /**
-   * Selects the course name from a combobox dropdown, same pattern as
-   * selectDropdown/selectMultiDropdownPedagogy, driven by Sheet3 of
-   * CourseData.xlsx.
+   * Selects the course level from a combobox dropdown, driven by Sheet3
+   * of CourseData.xlsx (index 0 -> nth(0) combobox, value "Intermediate").
+   * Reuses the same generic selectDropdown method as the basic
+   * configuration and course name dropdowns.
    */
-  async selectCourseName(index: number, value: string) {
+  async selectCourseLevel(index: number, value: string) {
     await this.selectDropdown(index, value);
-  }
-
-  /**
-   * Selects the course level. Placeholder assumes course level is
-   * presented as a clickable button/chip labelled with the level name
-   * (e.g. "Beginner", "Intermediate", "Advanced"). Update the selector
-   * if the real UI differs (e.g. a combobox instead).
-   */
-  async selectCourseLevel(value: string) {
-    const levelOption = this.page.getByRole('button', { name: value });
-    await this.click(levelOption);
-    await expect(levelOption).toBeVisible();
   }
 
   /**

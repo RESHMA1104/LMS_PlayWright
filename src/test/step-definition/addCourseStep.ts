@@ -294,9 +294,9 @@ Then('the select Resource Type value should be on state', async function (this: 
 
 // ---- Newly added steps to complete the End-to-End scenario ----
 
-When('the user selects the course name', async function (this: BugFinder) {
+When('the user adds the course level', async function (this: BugFinder) {
   try {
-    logger.info('Loading course name data from Excel Sheet3');
+    logger.info('Loading course level data from Excel Sheet3');
 
     const filePath = path.resolve(process.cwd(), 'test-data/CourseData.xlsx');
     const data = ExcelReader.read(filePath, 'Sheet3') as any[];
@@ -309,25 +309,10 @@ When('the user selects the course name', async function (this: BugFinder) {
         throw new Error(`Invalid Excel Row : ${JSON.stringify(row)}`);
       }
 
-      await this.addCoursePage.selectCourseName(index, value);
+      await this.addCoursePage.selectCourseLevel(index, value);
 
-      logger.info(`Selected course name '${value}' from dropdown index '${index}'`);
+      logger.info(`Selected course level '${value}' from dropdown index '${index}'`);
     }
-
-    logger.info('Course name selected successfully');
-  } catch (error) {
-    logger.error(`Course name selection failed : ${error}`);
-    throw error;
-  }
-});
-
-When('the user adds the course level', async function (this: BugFinder) {
-  try {
-    logger.info('Selecting course level');
-
-    // TODO: replace with a real data source (Excel/JSON) if the level
-    // should vary per test run instead of being hard-coded.
-    await this.addCoursePage.selectCourseLevel('Intermediate');
 
     logger.info('Course level selected successfully');
   } catch (error) {

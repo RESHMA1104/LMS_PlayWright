@@ -37,7 +37,7 @@ export class BugFinder extends World {
     AddSimilarCourses! :AddSimilarCourse
     AddService! : AddService
     ServieEdit! : ServieEdit
-    deletePage!: DeletePage
+    deletePage!:DeletePage
     
 
 }

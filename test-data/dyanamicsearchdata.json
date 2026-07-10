@@ -4,5 +4,11 @@
   },
   "invalid": {
     "serviceType": "XYZ123"
+  },
+  "courseCategorySuccessMsg":{
+    "Message":"Category Created Successfully"
+  },
+  "searchCategory":{
+    "searchValue":"RishwaQA"
   }
 }

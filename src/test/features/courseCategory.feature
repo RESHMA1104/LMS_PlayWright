@@ -22,3 +22,10 @@ Description:To check The adding Functionality of Course Category
   Scenario: To Verify The Search Fuctionalaty of Course Category
     And The User Enter the Search value in search Bar of Course Category
     Then The User Should be Show the Results based on Search value
+
+  Scenario: To verify the Delete Functionality of Course Category
+    And The User Clicks on Add Category Button in Course Management
+    And The User Enter the Search value in search Bar of Course Category
+    And The User Delete An Course Category From Search Resulted
+    Then The Course Category Should Be Deleted
+

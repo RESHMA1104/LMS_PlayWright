@@ -1,6 +1,5 @@
 
 
-
 /*/*
     CustomWorld Creation to use cross the Project 
 */
@@ -37,6 +36,7 @@ export class BugFinder extends World {
     AddService!: AddService
     ServieEdit!: ServieEdit
     dynamicfieldmanagementPage!: DynamicFieldManagement;
+    deleteService!:deleteService
 
 
 }

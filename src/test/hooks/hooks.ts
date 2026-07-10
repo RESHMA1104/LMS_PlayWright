@@ -18,8 +18,7 @@ import { AddService } from '../pages/AddnewService';
 import { ServieEdit } from "../pages/ServiceEditPage";
 import { DeletePage } from "../pages/DeleteCoursePage";
 import { deleteService } from "../pages/deteteServicepage";
-
-import { DynamicFieldManagement } from "../pages/dynamicfieldmanagementpage";
+import { Addclient } from "../pages/AddClient";
 
 // Default Timeout
 setDefaultTimeout(180 * 1000);
@@ -30,7 +29,7 @@ let browser: Browser;
 BeforeAll(async () => {
 
     browser = await chromium.launch({
-        headless: false
+        headless: true
     })
 })
 
@@ -47,21 +46,20 @@ Before(async function (this: BugFinder) {
     this.loginPage = new LoginPage(this.page);
     this.dashboardPage = new DashBoardPage(this.page);
     this.coursemanagementPage = new CourseManagementPage(this.page);
-
     this.addcoursestructurePage = new AddCorseStructurePage(this.page);
-    
     this.addCoursePage = new AddCourse(this.page);
     this.editPage = new EditPage(this.page);
     this.courseFilter = new CourseFilter(this.page);
-  
     this.courseFilter = new CourseFilter(this.page);
+    this.AddService = new AddService(this.page);
+    this.ServieEdit = new ServieEdit(this.page);
+    this.deletePage = new DeletePage(this.page);
     this.AddService = new AddService(this.page)
     this.ServieEdit = new ServieEdit(this.page)
     this.deleteService = new deleteService(this.page)
     this.AddService = new AddService(this.page);
     this.ServieEdit = new ServieEdit(this.page);
-    this.deletePage = new DeletePage(this.page);
-    this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);
+    this.Addclient = new Addclient(this.page)
 })
 
 // If the test Failed ScreenShot capture 

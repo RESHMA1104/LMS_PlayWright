@@ -6,7 +6,10 @@ Feature: Tamilarasu_08_07_2026_Client_Client Management
     When User enter the valid email
     And User enter the valid password
     And User clicks the Sign button
+    When the user click on the Dynamic field Setting
 
+
+@client
   Scenario Outline: Verify a user can successfully add a new client with necessary details
     When the user click on the clientModel
     And he click on the add client

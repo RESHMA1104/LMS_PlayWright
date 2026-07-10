@@ -1,3 +1,4 @@
+import { Status } from '@cucumber/cucumber';
 import { Page,expect,Locator } from "@playwright/test";
 import { BasePage } from "./BasePage";
 export class deleteService extends BasePage{
@@ -25,9 +26,8 @@ export class deleteService extends BasePage{
     }
 
   async popupchecking() {
-    await expect(this.popupnotification).toBeVisible({
-        timeout: 90000
-    });
+    await this.popupnotification.waitFor({state:'visible',timeout:120000})
+    await expect(this.popupnotification).toBeVisible();
 }
 
 

@@ -24,7 +24,7 @@ export class Addclient extends BasePage {
         this.companyname = page.locator('//input[@placeholder="Enter company name"]');
         this.email = page.locator('//input[@placeholder="Enter email address"]');
         this.phone = page.locator('//input[@placeholder="Enter phone number"]');
-        this.description = page.locator("//textarea[@placeholder='Description']");
+        this.description = page.locator('//textarea[@placeholder="Enter client description or notes"]');
         this.Company_Address = page.locator('//textarea[@placeholder="Enter complete company address"]');
 
         this.savebtn = page.locator("//button[normalize-space()='Add Client']");

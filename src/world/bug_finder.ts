@@ -19,7 +19,7 @@ import { deleteService } from '../test/pages/deteteServicepage';
 
 import type { DynamicFieldManagement } from '../test/pages/dynamicfieldmanagementpage';
 import type { AddService } from '../test/pages/AddnewService';
-
+import { Addclient } from '../test/pages/AddClient';
 
 
 // CustomWorld extends World
@@ -40,6 +40,7 @@ export class BugFinder extends World {
     deletePage!: DeletePage
     dynamicfieldmanagementPage!: DynamicFieldManagement;
     deleteService!: deleteService;
+    Addclient!:Addclient;
 
 
 }

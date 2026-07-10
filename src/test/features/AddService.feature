@@ -1,4 +1,4 @@
-@Service
+@Service 
 Feature: Tamilarasu_08_07_2026 Adding Course Structure
 
   Background:
@@ -7,7 +7,7 @@ Feature: Tamilarasu_08_07_2026 Adding Course Structure
     And User enter the valid password
     And User clicks the Sign button
 @Test1
-  Scenario Outline: Add a New Service
+  Scenario Outline: To verify  Add a New Service Sucessfully with valid data 
     When the user click on the Dynamic field Setting
     And Click on Add Service
     And Enter the "<Service Name>" and "<Description>"
@@ -18,33 +18,55 @@ Feature: Tamilarasu_08_07_2026 Adding Course Structure
       | Service Name    | Description                       |
       | Automation Testing2 | Testing with the playwright BDD.. |
 @Test2
-  Scenario: Add a New Service with empty fields
+  Scenario:To verify   Add a New Service with empty fields
     When the user click on the Dynamic field Setting
     And Click on Add Service
     And Click on the Create Service
     Then The user did not see the notification
 
 
- @Service2
-Scenario: Search Functionality with valid data in the Dynamic Field Setting
+@Test3
+Scenario: To verify  Search Functionality with valid data in the Dynamic Field Setting
   When the user click on the Dynamic field Setting
   And the user enter valid Service type in the search bar
   Then the Service Should properly display
 
-@Service3
-Scenario: Search Functionality with invalid data in the Dynamic Field Setting
+
+@Test4
+Scenario: To verify  Search Functionality with invalid data in the Dynamic Field Setting
   When the user click on the Dynamic field Setting
   And the user enter invalid Service type in the search bar
   Then the Service Should get the message for No services found matching your search for invalid data
 
-@Service4
-  Scenario: User edit the service by new data the Service Should edit Sucessfully
+@Test5
+  Scenario:To verify  User edit the service by new data the Service Should edit Sucessfully
   When the user click on the Dynamic field Setting
-  When the user Search the particular Service to Edit 
+  And the user Search the particular Service to Edit 
   And the user click on the edit Service
   And The user give the new Details such as servicename and description 
   Then the user see the successfully edited popup meassage
+
+@Test6
+  Scenario:To verify  User edit the service by already existing  data the Service Should not Sucessfully
+  When the user click on the Dynamic field Setting
+  And the user Search the particular Service to Edit 
+  And the user click on the edit Service
+  And The user give the new Details such as servicename and description 
+  Then the user  did not  see  the successfully edited popup meassage
   
+
+@Test7 
+  Scenario:To verify User can delete a  service  successfully 
+   When the user click on the Dynamic field Setting
+   And click on the delete button 
+   And the user click on the delete
+   And the user See the notifucation for sucessfully delete   
+
+
+
+
+
+
   
 
     

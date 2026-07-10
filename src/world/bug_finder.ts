@@ -11,11 +11,9 @@ import { LoginPage } from '../test/pages/loginPage';
 import { DashBoardPage } from '../test/pages/dashboardpage';
 import { CourseManagementPage } from '../test/pages/coursemanagementpage';
 import { AddCorseStructurePage } from '../test/pages/addcoursestructurepage';
-import { ReportDownload } from '../test/pages/PrintReportPage';
 import type { AddCourse } from '../test/pages/addCoursePage';
 import { EditPage } from '../test/pages/EditCoursePage';
 import { CourseFilter } from '../test/pages/courseFilterPage';
-import { AddSimilarCourse } from '../test/pages/AddSimilarCoursepage';
 import { AddService } from '../test/pages/AddnewService';
 import { ServieEdit } from '../test/pages/ServiceEditPage';
 import { DeletePage } from '../test/pages/DeleteCoursePage';
@@ -30,11 +28,9 @@ export class BugFinder extends World {
     dashboardPage!: DashBoardPage;
     coursemanagementPage!: CourseManagementPage;
     addcoursestructurePage!: AddCorseStructurePage;
-    ReportDownload!: ReportDownload;
     addCoursePage!: AddCourse;
     editPage!: EditPage;
     courseFilter!:CourseFilter;
-    AddSimilarCourses! :AddSimilarCourse
     AddService! : AddService
     ServieEdit! : ServieEdit
     deletePage!:DeletePage

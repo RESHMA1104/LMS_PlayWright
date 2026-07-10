@@ -43,3 +43,18 @@ Then("User should see the appropriate error {string}", async function (this: Bug
     logger.info(`Verifying error message: ${message}`);
     await this.loginPage.verifyErrorMessage(message);
 });
+
+When("User click the profile button", async function (this: BugFinder) {
+    logger.info("Clicking Profile button");
+    await this.loginPage.clickProfile();
+});
+
+When("User click the sigout button", async function (this: BugFinder) {
+    logger.info("Clicking Sign Out button");
+    await this.loginPage.clickSignOut();
+});
+
+Then("user should navigate to login page", async function (this: BugFinder) {
+    logger.info("Verifying Login page");
+    await this.loginPage.verifyLoginPage();
+});

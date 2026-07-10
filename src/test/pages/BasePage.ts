@@ -141,5 +141,9 @@ export class BasePage {
         await this.click(clickLocator);
         return await downloadPromise;
     }
+    //browser validation tetxt
+    async getValidationMessage(locator: Locator) {
+         return await locator.evaluate((element: HTMLInputElement) => element.validationMessage);
+    }
 
 }

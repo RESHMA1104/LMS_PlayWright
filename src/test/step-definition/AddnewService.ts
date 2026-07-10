@@ -15,12 +15,11 @@ When('Click on Add Service', async function (this: BugFinder) {
     logger.info("Successfully clicked on Add Service button");
 });
 
-When(
-    'Enter the {string} and {string}',
-    async function (this: BugFinder, ServiceName: string, Description: string) {
-        logger.info(`Entering Service Name: ${ServiceName} and Description: ${Description}`);
-        await this.AddService.Enteringthedetailsing(ServiceName, Description);
-        logger.info("Successfully entered Service details");
+
+When('Enter the {string} and {string}',async function (this: BugFinder, ServiceName: string, Description: string) {
+    logger.info(`Entering Service Name: ${ServiceName} and Description: ${Description}`);
+    await this.AddService.Enteringthedetailsing(ServiceName, Description);
+    logger.info("Successfully entered Service details");
     }
 );
 
@@ -43,6 +42,7 @@ Then('The user did not see the notification', async function (this: BugFinder) {
     logger.info("Verifying notification is not displayed");
     await this.AddService.VerifyNotificationNotDisplayed();
     logger.info("Verified notification is not displayed");
+
 
 });
 

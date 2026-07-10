@@ -16,7 +16,9 @@ import { EditPage } from "../pages/EditCoursePage";
 import { CourseFilter } from "../pages/courseFilterPage";
 import { AddService } from '../pages/AddnewService';
 import { ServieEdit } from "../pages/ServiceEditPage";
+import { DeletePage } from "../pages/DeleteCoursePage";
 import { deleteService } from "../pages/deteteServicepage";
+
 import { DynamicFieldManagement } from "../pages/dynamicfieldmanagementpage";
 
 // Default Timeout
@@ -58,6 +60,7 @@ Before(async function (this: BugFinder) {
     this.deleteService = new deleteService(this.page)
     this.AddService = new AddService(this.page);
     this.ServieEdit = new ServieEdit(this.page);
+    this.deletePage = new DeletePage(this.page);
     this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);
 })
 

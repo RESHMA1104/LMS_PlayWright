@@ -33,7 +33,7 @@ Then user should see the course updated successfully message
 
 Examples:
   | IDo               |  WeDo          |   YouDo        | 
-  | Live Classes      |   Lab          |   Assesments   |
+  | Live Classes      |   Lab          |   Assessment   |
   | kps               |   Practical    |   Exercise     |
 
 Scenario: Edit the skill set details in Course Hierarchy

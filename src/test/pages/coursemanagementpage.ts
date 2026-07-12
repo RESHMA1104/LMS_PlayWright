@@ -22,6 +22,7 @@ export class CourseManagementPage extends BasePage {
     }
 
     async clickAddCouresStructure() {
+        await this.AddCourseStructureBtn.waitFor({ state: 'visible', timeout: 120000 });
         await this.click(this.AddCourseStructureBtn);
     }
 

@@ -61,9 +61,10 @@ export class AddService extends BasePage {
     }
 
     async VerifyServiceCreatedPopup() {
+        await this.SuccessPopup.waitFor({state:'visible',timeout:120000})
         console.log(this.SuccessPopup.textContent())
         console.log(this.SuccessPopup.textContent())
-        await expect(this.SuccessPopup).toBeVisible({ timeout: 90000 });           
+        await expect(this.SuccessPopup).toBeVisible();           
 
     }
 

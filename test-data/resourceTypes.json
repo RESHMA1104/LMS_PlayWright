@@ -1,4 +1,5 @@
 {
+  "_comment_resourceTypes": "Button indices (0-based, in DOM order) to toggle 'On' for each teaching mode section (I Do / We Do / You Do) on the Add Course > Course Hierarchy step.",
   "resourceTypes": [
     {
       "resourceName": "I Do",
@@ -12,5 +13,10 @@
       "resourceName": "You Do",
       "buttons": [1]
     }
-  ]
+  ],
+
+  "_comment_skillSet": "Checkbox indices (0-based, in DOM order) to select in the Skill Set section on the Add Course > Course Hierarchy step.",
+  "skillSet": {
+    "indices": [0, 2, 5]
+  }
 }

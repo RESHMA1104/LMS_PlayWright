@@ -2,11 +2,14 @@ import { Then, When } from "@cucumber/cucumber";
 import { BugFinder } from "../../world/bug_finder";
 import { logger } from "../../utils/logger";
 import dyanamicsearchdata from "../../../test-data/dyanamicsearchdata.json";
+import { EditReader, readEditData } from "../../utils/csvReader";
 
 const searchValue = dyanamicsearchdata.searchCategory;
 const successMsg = dyanamicsearchdata.courseCategorySuccessMsg;
-
+const data: EditReader[] = readEditData();
 let deletedCourseCategoryName: string;
+
+
 
 When(
     "The User Clicks on Course Category in Slider",
@@ -163,3 +166,20 @@ Then(
         );
     }
 );
+When('the user clicks on Edit Option in Three Dot Menu', async function (this: BugFinder) {
+    await this.dynamicfieldmanagementPage.clickThreedotEdit();
+});
+When('the User Enter The Category and Course name', async function (this: BugFinder) {
+    for (const ed of data) {
+        await this.dynamicfieldmanagementPage.editDetails(ed.categoryname, ed.coursename, ed.description);
+    }
+});
+When('Clicks on update Category', async function (this: BugFinder) {
+    await this.dynamicfieldmanagementPage.clickUpdateCourse();
+});
+Then('The user should notified with success Message', async function (this: BugFinder) {
+    for (const ed of data) {
+        await this.dynamicfieldmanagementPage.editSuccessMsg(ed.successmessage);
+    }
+
+});

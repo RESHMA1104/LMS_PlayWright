@@ -6,10 +6,9 @@ import { EditReader, readEditData } from "../../utils/csvReader";
 
 const searchValue = dyanamicsearchdata.searchCategory;
 const successMsg = dyanamicsearchdata.courseCategorySuccessMsg;
-const data: EditReader[] = readEditData();
+const editData: EditReader[] = readEditData();
+
 let deletedCourseCategoryName: string;
-
-
 
 When(
     "The User Clicks on Course Category in Slider",
@@ -25,7 +24,9 @@ When(
 When(
     "The User Clicks on Add Category Button in Course Management",
     async function (this: BugFinder) {
-        logger.info("Clicking the Add Category button in Course Management");
+        logger.info(
+            "Clicking the Add Category button in Course Management"
+        );
 
         await this.dynamicfieldmanagementPage.clickAddCategoryBtn();
 
@@ -36,19 +37,19 @@ When(
 When(
     "The User Add Category Details such as category name and course name and description",
     async function (this: BugFinder, dataTable) {
-        const data = dataTable.rowsHash();
+        const categoryData = dataTable.rowsHash();
 
         logger.info(
-            `Entering course category details — Category Name: ${data.categoryname}, Course Name: ${data.coursename}`
+            `Entering Course Category details - Category Name: ${categoryData.categoryname}, Course Name: ${categoryData.coursename}`
         );
 
         await this.dynamicfieldmanagementPage.fillCourseCategoryDetails(
-            data.categoryname,
-            data.coursename,
-            data.coursedescription
+            categoryData.categoryname,
+            categoryData.coursename,
+            categoryData.coursedescription
         );
 
-        logger.info("Course category details entered successfully");
+        logger.info("Course Category details entered successfully");
     }
 );
 
@@ -57,30 +58,7 @@ When(
     async function (this: BugFinder) {
         logger.info("Clicking the Create Category button");
 
-    await this.dynamicfieldmanagementPage.deleteCheck(deletedCourseCategoryName, searchValue.searchValue);
-    logger.info(`Verified deleted course category is not displayed: ${deletedCourseCategoryName}`);
-});
-  
-When('The User Clicks on Course Category in Slider', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.clickCourseCaetogrySlider();
-});
-When('The User Clicks on Add Category Button in Course Management', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.clickAddCategoryBtn();
-});
-When('The User Add Category Details such as category name and course name and description', async function (this: BugFinder, dataTable) {
-    const data = dataTable.rowsHash();
-    await this.dynamicfieldmanagementPage.fillCourseCategoryDetails(data.categoryname, data.coursename, data.coursedescription);
-});
-When('The User clicks on Create category Button', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.clickAddCategorySubmitBtn();
-});
-Then('The User Should See a Category Success Message with Course ID', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.assertSuccessCategory(successMsg.Message);
-});
-When('The User Enter the Search value in search Bar of Course Category', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.enterSearchValue(searchValue.searchValue);
-});
-Then('The User Should be Show the Results based on Search value', async function (this: BugFinder) {
+        await this.dynamicfieldmanagementPage.clickAddCategorySubmitBtn();
 
         logger.info("Clicked the Create Category button successfully");
     }
@@ -90,7 +68,7 @@ Then(
     "The User Should See a Category Success Message with Course ID",
     async function (this: BugFinder) {
         logger.info(
-            `Verifying the category success message: ${successMsg.Message}`
+            `Verifying the Category success message: ${successMsg.Message}`
         );
 
         await this.dynamicfieldmanagementPage.assertSuccessCategory(
@@ -138,7 +116,7 @@ Then(
 When(
     "The User Delete An Course Category From Search Resulted",
     async function (this: BugFinder) {
-        logger.info("Deleting a course category from the search results");
+        logger.info("Deleting a Course Category from the search results");
 
         deletedCourseCategoryName =
             await this.dynamicfieldmanagementPage.clickDeleteBtn();
@@ -153,7 +131,7 @@ Then(
     "The Course Category Should Be Deleted",
     async function (this: BugFinder) {
         logger.info(
-            `Verifying that the course category was deleted: ${deletedCourseCategoryName}`
+            `Verifying the Course Category was deleted: ${deletedCourseCategoryName}`
         );
 
         await this.dynamicfieldmanagementPage.deleteCheck(
@@ -162,24 +140,65 @@ Then(
         );
 
         logger.info(
-            `Verified deleted course category is not displayed: ${deletedCourseCategoryName}`
+            `Verified deleted Course Category is not displayed: ${deletedCourseCategoryName}`
         );
     }
 );
-When('the user clicks on Edit Option in Three Dot Menu', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.clickThreedotEdit();
-});
-When('the User Enter The Category and Course name', async function (this: BugFinder) {
-    for (const ed of data) {
-        await this.dynamicfieldmanagementPage.editDetails(ed.categoryname, ed.coursename, ed.description);
-    }
-});
-When('Clicks on update Category', async function (this: BugFinder) {
-    await this.dynamicfieldmanagementPage.clickUpdateCourse();
-});
-Then('The user should notified with success Message', async function (this: BugFinder) {
-    for (const ed of data) {
-        await this.dynamicfieldmanagementPage.editSuccessMsg(ed.successmessage);
-    }
 
-});
+When(
+    "the user clicks on Edit Option in Three Dot Menu",
+    async function (this: BugFinder) {
+        logger.info("Clicking the Edit option from the Three Dot menu");
+
+        await this.dynamicfieldmanagementPage.clickThreedotEdit();
+
+        logger.info("Clicked the Edit option successfully");
+    }
+);
+
+When(
+    "the User Enter The Category and Course name",
+    async function (this: BugFinder) {
+        for (const edit of editData) {
+            logger.info(
+                `Editing Category Name: ${edit.categoryname}, Course Name: ${edit.coursename}`
+            );
+
+            await this.dynamicfieldmanagementPage.editDetails(
+                edit.categoryname,
+                edit.coursename,
+                edit.description
+            );
+        }
+
+        logger.info("Course Category details edited successfully");
+    }
+);
+
+When(
+    "Clicks on update Category",
+    async function (this: BugFinder) {
+        logger.info("Clicking the Update Category button");
+
+        await this.dynamicfieldmanagementPage.clickUpdateCourse();
+
+        logger.info("Clicked the Update Category button successfully");
+    }
+);
+
+Then(
+    "The user should notified with success Message",
+    async function (this: BugFinder) {
+        for (const edit of editData) {
+            logger.info(
+                `Verifying edit success message: ${edit.successmessage}`
+            );
+
+            await this.dynamicfieldmanagementPage.editSuccessMsg(
+                edit.successmessage
+            );
+        }
+
+        logger.info("Edit success message verified successfully");
+    }
+);

@@ -5,18 +5,18 @@
     },
     "courseEdit":{
       "CourseName": "Bug-Finder",
-      "Service Type":"Testing Model",
-      "Service Model": "Tester",
+      "Service Type":"business to business",
+      "Service Model": "HTD",
       "Course Client": "jamocha",
       "Success": "Course updated successfully"
     },
       
     "courseValidation": {
-      "CourseCategory": "LMS testing",
+      "CourseCategory": "sample",
       "ValidationMessage": "Please enter a course name"
     },
     "courseDelete": {
-      "CourseName": "DEEPLEARNING"
+      "CourseName": "pytest"
     }
 }
 

@@ -37,7 +37,7 @@ export class EditPage extends BasePage{
         this.page = page;
         this.courseMgt = page.locator('[title="Course Management"]');
         this.searchbx = page.locator('//input[@placeholder="Search courses, codes, clients, or categories..."]');
-        this.editmenu = page.locator('(//span[text()="Bug-Finder"]/following::td/child::span/child::div/child::div)');
+        this.editmenu = page.locator('.flex.items-center.gap-1.px-2.py-1.rounded.bg-gray-50');
         this.editcrse = page.locator('//button[text()="Edit Course"]');
         this.crsclient = page.locator('//label[text()="Course Client"]//following::span[@data-slot="select-value"][1]');
         this.servicemdl = page.locator('//label[text()="Service Model"]//following::span[@data-slot="select-value"][1]');
@@ -57,11 +57,11 @@ export class EditPage extends BasePage{
         this.c = page.locator('//label[text()="C"]')
         this.react = page.locator('//label[text()="React"]')
         this.wedoclick = page.locator('//button[text()="We Do"]');
-        this.onWedo = page.locator('//div[text()="AI Chat"]//following::button[@aria-checked="false"][1]');
+        this.onWedo = page.locator('//div[text()="AI Chat"]//following::button[@role="switch"][1]');
         this.idoclick = page.locator('//button[text()="I Do"]');
-        this.onIdo = page.locator('//div[text()="PDF"]//following::button[@aria-checked="false"][1]');
+        this.onIdo = page.locator('//div[text()="PDF"]//following::button[@role="switch"][1]');
         this.youdoclick = page.locator('//button[text()="You Do"]');
-        this.onYoudo = page.locator('//div[text()="Notes"]//following::button[@aria-checked="false"][1]');
+        this.onYoudo = page.locator('//div[text()="Notes"]//following::button[@role="switch"][1]');
     }
 
     async CoursePage(){
@@ -74,6 +74,7 @@ export class EditPage extends BasePage{
     }
 
     async EditMenubtn(){
+        await this.editmenu.waitFor({ state: 'visible', timeout: 120000 });
         await this.click(this.editmenu);
     }
 

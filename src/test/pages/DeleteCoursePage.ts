@@ -13,9 +13,9 @@ constructor(page:Page){
         super(page);
         this.page = page;
         this.searchbx = page.locator('//input[@placeholder="Search courses, codes, clients, or categories..."]')
-        this.deletebtn = page.locator('//button[text()="Delete Course"]');
+        this.deletebtn = page.getByRole('button', { name: 'Delete Course' });
         this.deletecrse = page.locator('//button[text()="Delete Course"]');
-        this.deletemenu = page.locator('.dark:hover:bg-gray-700 border');
+        this.deletemenu = page.locator('.flex.items-center.gap-1.px-2.py-1.rounded.bg-gray-50');
     }
 
     async Searchcrse(){

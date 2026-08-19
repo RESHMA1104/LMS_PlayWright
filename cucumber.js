@@ -19,6 +19,7 @@ module.exports = {
 
     format: [
       'snippets',
+      
       'progress',
       'json:reports/cucumber-json/cucumber-report.json',
       'html:reports/cucumber-html/cucumber-report.html',

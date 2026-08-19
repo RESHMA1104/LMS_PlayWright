@@ -1,6 +1,3 @@
-
-
-
 /*/*
     CustomWorld Creation to use cross the Project 
 */
@@ -21,7 +18,8 @@ import { DeletePage } from '../test/pages/DeleteCoursePage';
 import { deleteService } from '../test/pages/deteteServicepage';
 
 import type { DynamicFieldManagement } from '../test/pages/dynamicfieldmanagementpage';
-
+// import type { AddService } from '../test/pages/AddnewService';
+import { Addclient } from '../test/pages/AddClient';
 
 
 // CustomWorld extends World
@@ -43,6 +41,7 @@ export class BugFinder extends World {
     
     dynamicfieldmanagementPage!: DynamicFieldManagement;
     deleteService!: deleteService;
+    Addclient!:Addclient;
 
 
 }

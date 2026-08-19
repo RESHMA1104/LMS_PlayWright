@@ -1,4 +1,4 @@
-@Rishwanth @CC
+@CC @Rishwanth
 Feature: Rishwanth_09_07_2026 Course Category Functionality in LMS-Smartcliff website
 Description:To check The adding Functionality of Course Category
 
@@ -10,6 +10,7 @@ Description:To check The adding Functionality of Course Category
     When the user click on the Dynamic field Setting
     And The User Clicks on Course Category in Slider
 
+  @Add
   Scenario: To verify the add functionality of Course Category
     And The User Clicks on Add Category Button in Course Management
     And The User Add Category Details such as category name and course name and description
@@ -29,3 +30,8 @@ Description:To check The adding Functionality of Course Category
     And The User Delete An Course Category From Search Resulted
     Then The Course Category Should Be Deleted
 
+  Scenario: To verify the edit functionality of course category
+    And the user clicks on Edit Option in Three Dot Menu
+    And the User Enter The Category and Course name
+    And Clicks on update Category
+    Then The user should notified with success Message

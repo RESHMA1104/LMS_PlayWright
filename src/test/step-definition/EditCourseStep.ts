@@ -48,9 +48,14 @@ When('user clicks the Preview and Update button', async function (this: BugFinde
 });
 
 Then('user should see the course updated successfully message', async function (this: BugFinder) {
-    logger.info("Verifying the course updated successfully message");
-    await this.editPage.SuccessMsg();
-    logger.info("Success message verified");
+    try {
+        logger.info("Verifying the course updated successfully message");
+        await this.editPage.SuccessMsg();
+        logger.info("Success message verified");
+    } catch (error) {
+        logger.error(`Failed to verify the course updated successfully message: ${error}`);
+        throw error;
+    }
 });
 
 When('user changes the course category', async function (this: BugFinder) {
@@ -60,9 +65,14 @@ When('user changes the course category', async function (this: BugFinder) {
 });
 
 Then('user should see the error message', async function (this: BugFinder) {
-    logger.info("Verifying the validation error message");
-    await this.editPage.MsgValidation();
-    logger.info("Validation message verified successfully");
+    try {
+        logger.info("Verifying the validation error message");
+        await this.editPage.MsgValidation();
+        logger.info("Validation message verified successfully");
+    } catch (error) {
+        logger.error(`Failed to verify the validation error message: ${error}`);
+        throw error;
+    }
 });
 
 Given('user has completed the Basic Configuration page', async function (this: BugFinder) {

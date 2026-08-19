@@ -1,1 +1,2 @@
-src\test\features\addCourse.feature:53
+src\test\features\RecentActivities.feature:11
+src\test\features\addCourse.feature:29:46:53

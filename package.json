@@ -14,6 +14,7 @@
   "scripts": {
     "test": "cucumber-js",
     "test:rerun": "cucumber-js -p rerun",
+    "prasanna": "cucumber-js --tags @Prasanna",
     "report": "ts-node src/helper/report.ts",
     "test:report": "npm run test && npm run report",
     "ci": "npm run test && npm run report"

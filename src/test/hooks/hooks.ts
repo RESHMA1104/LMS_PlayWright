@@ -63,7 +63,7 @@ Before(async function (this: BugFinder) {
     this.ServieEdit = new ServieEdit(this.page);
     this.Addclient = new Addclient(this.page)
     this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page)
-    this.dynamicFieldSettings = new DynamicFieldSettingsPage(this.page)
+    this.dynamicFieldSettingsPage = new DynamicFieldSettingsPage(this.page)
 })
 
 // If the test Failed ScreenShot capture 

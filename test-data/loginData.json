@@ -17,6 +17,12 @@
     },
     "courseDelete": {
       "CourseName": "pytest"
+    },
+    "dynamicFieldSettings": {
+      "Service Name": "Bug-Finder-Field",
+      "Description": "BugFinder",
+      "Success": "Service created successfully",
+      "ValidationMessage": "Please fill out this field."
     }
 }
 

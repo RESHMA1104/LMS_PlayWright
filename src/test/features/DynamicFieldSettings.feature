@@ -1,4 +1,4 @@
-@DynamicFieldSettings @Main
+@Reshma @Main
 Feature: Dynamic Field Settings - Add New Field
 
 Background:

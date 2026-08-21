@@ -13,68 +13,79 @@ Then('user navigates to the Dynamic Field Settings page', async function (this: 
     }
 });
 
-When('user selects the Service Model', async function (this: BugFinder) {
+Then('user selects the Service Model tab', async function (this: BugFinder) {
     try {
-        logger.info("Selecting the Service Model");
-        await this.dynamicFieldSettingsPage.SelectServiceModel();
-        logger.info("Service Model selected successfully");
+        logger.info("Selecting the Service Model tab");
+        await this.dynamicFieldSettingsPage.SelectServiceModelTab();
+        logger.info("Service Model tab selected successfully");
     } catch (error) {
-        logger.error(`Failed to select the Service Model: ${error}`);
+        logger.error(`Failed to select the Service Model tab: ${error}`);
         throw error;
     }
 });
 
-When('user clicks the Add button', async function (this: BugFinder) {
+When('user clicks the Add Service button', async function (this: BugFinder) {
     try {
-        logger.info("Clicking the Add button");
-        await this.dynamicFieldSettingsPage.ClickAdd();
-        logger.info("Add button clicked successfully");
+        logger.info("Clicking the Add Service button");
+        await this.dynamicFieldSettingsPage.ClickAddService();
+        logger.info("Add Service button clicked successfully");
     } catch (error) {
-        logger.error(`Failed to click the Add button: ${error}`);
+        logger.error(`Failed to click the Add Service button: ${error}`);
         throw error;
     }
 });
 
-When('user enters the course name', async function (this: BugFinder) {
+When('user enters the service name', async function (this: BugFinder) {
     try {
-        logger.info("Entering the course name");
-        await this.dynamicFieldSettingsPage.EnterCourseName();
-        logger.info("Course name entered successfully");
+        logger.info("Entering the service name");
+        await this.dynamicFieldSettingsPage.EnterServiceName();
+        logger.info("Service name entered successfully");
     } catch (error) {
-        logger.error(`Failed to enter the course name: ${error}`);
+        logger.error(`Failed to enter the service name: ${error}`);
         throw error;
     }
 });
 
-When('user clicks the Save button', async function (this: BugFinder) {
+When('user enters the description', async function (this: BugFinder) {
     try {
-        logger.info("Clicking the Save button");
-        await this.dynamicFieldSettingsPage.ClickSave();
-        logger.info("Save button clicked successfully");
+        logger.info("Entering the description");
+        await this.dynamicFieldSettingsPage.EnterDescription();
+        logger.info("Description entered successfully");
     } catch (error) {
-        logger.error(`Failed to click the Save button: ${error}`);
+        logger.error(`Failed to enter the description: ${error}`);
         throw error;
     }
 });
 
-Then('user should see the field added successfully message', async function (this: BugFinder) {
+When('user clicks the Create Service button', async function (this: BugFinder) {
     try {
-        logger.info("Verifying the field added successfully message");
+        logger.info("Clicking the Create Service button");
+        await this.dynamicFieldSettingsPage.ClickCreateService();
+        logger.info("Create Service button clicked successfully");
+    } catch (error) {
+        logger.error(`Failed to click the Create Service button: ${error}`);
+        throw error;
+    }
+});
+
+Then('user should see the service created successfully message', async function (this: BugFinder) {
+    try {
+        logger.info("Verifying the service created successfully message");
         await this.dynamicFieldSettingsPage.SuccessMsg();
         logger.info("Success message verified");
     } catch (error) {
-        logger.error(`Failed to verify the field added successfully message: ${error}`);
+        logger.error(`Failed to verify the service created successfully message: ${error}`);
         throw error;
     }
 });
 
-Then('user should see the course name error message', async function (this: BugFinder) {
+Then('user should see the mandatory field validation message', async function (this: BugFinder) {
     try {
-        logger.info("Verifying the course name validation error message");
+        logger.info("Verifying the mandatory field validation message");
         await this.dynamicFieldSettingsPage.MsgValidation();
         logger.info("Validation message verified successfully");
     } catch (error) {
-        logger.error(`Failed to verify the course name validation error message: ${error}`);
+        logger.error(`Failed to verify the mandatory field validation message: ${error}`);
         throw error;
     }
 });

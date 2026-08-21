@@ -2,14 +2,14 @@ import { expect, Locator, Page } from "@playwright/test";
 import { BasePage } from "./BasePage";
 import loginData from "../../../test-data/loginData.json";
 
-export class DynamicFieldSettingsPage extends BasePage {
+export class DynamicPage extends BasePage {
     private dynamicFieldSettingsMenu: Locator;
-    private serviceModelDropdown: Locator;
-    private addBtn: Locator;
-    private courseNameInput: Locator;
-    private saveBtn: Locator;
+    private serviceModelTab: Locator;
+    private addServiceBtn: Locator;
+    private serviceNameInput: Locator;
+    private descriptionInput: Locator;
+    private createServiceBtn: Locator;
     private successMessage: Locator;
-    private courseNameValidationMsg: Locator;
 
     constructor(page: Page) {
         super(page);
@@ -18,23 +18,19 @@ export class DynamicFieldSettingsPage extends BasePage {
         // Left navigation entry to open the Dynamic Field Settings page
         this.dynamicFieldSettingsMenu = page.locator('[title="Dynamic Field Settings"]');
 
-        // Service Model dropdown on the Dynamic Field Settings page
-        this.serviceModelDropdown = page.locator('//label[text()="Service Model"]//following::span[@data-slot="select-value"][1]');
+        // "Service Model" tab on the Dynamic Field Management page
+        this.serviceModelTab = page.locator('//button[normalize-space()="Service Model"]');
 
-        // "Add" button that opens the add-field form/modal
-        this.addBtn = page.locator('//button[normalize-space()="Add"]');
+        // "+ Add Service" button (top right of the Service Management card)
+        this.addServiceBtn = page.locator('//button[normalize-space()="Add Service"]');
 
-        // Course Name field inside the Add form/modal
-        this.courseNameInput = page.locator('//label[text()="Course Name"]//following::input[1]');
-
-        // Save button on the Add form/modal
-        this.saveBtn = page.locator('//button[normalize-space()="Save"]');
+        // "Add New Service" modal fields
+        this.serviceNameInput = page.locator('//label[normalize-space()="Service Name"]//following::input[1]');
+        this.descriptionInput = page.locator('//label[normalize-space()="Description"]//following::textarea[1]');
+        this.createServiceBtn = page.locator('//button[normalize-space()="Create Service"]');
 
         // Toast / success text shown after saving
         this.successMessage = page.locator('//div[@class="text-sm font-semibold leading-tight"]');
-
-        // Inline validation message when Course Name is left empty
-        this.courseNameValidationMsg = page.locator("//span[normalize-space()='Please enter a course name']");
     }
 
     async DynamicFieldSettingsPageNav() {
@@ -42,27 +38,37 @@ export class DynamicFieldSettingsPage extends BasePage {
         await this.dynamicFieldSettingsMenu.click();
     }
 
-    async SelectServiceModel() {
-        await this.selectDropdownValues(this.serviceModelDropdown, loginData.dynamicFieldSettings["Service Name"]);
+    async SelectServiceModelTab() {
+        await this.click(this.serviceModelTab);
     }
 
-    async ClickAdd() {
-        await this.click(this.addBtn);
+    async ClickAddService() {
+        await this.click(this.addServiceBtn);
     }
 
-    async EnterCourseName() {
-        await this.fill(this.courseNameInput, loginData.dynamicFieldSettings.Description);
+    async EnterServiceName() {
+        await this.fill(this.serviceNameInput, loginData.dynamicFieldSettings.ServiceName);
     }
 
-    async ClickSave() {
-        await this.click(this.saveBtn);
+    async EnterDescription() {
+        await this.fill(this.descriptionInput, loginData.dynamicFieldSettings.Description);
+    }
+
+    async ClickCreateService() {
+        await this.click(this.createServiceBtn);
     }
 
     async SuccessMsg() {
         await expect(this.successMessage).toContainText(loginData.dynamicFieldSettings.Success);
     }
 
+    // Mandatory field validation is native browser (HTML5 required) validation,
+    // it is NOT rendered as a DOM element you can assert with toHaveText/toContainText.
+    // It must be read off the input's validationMessage property instead.
     async MsgValidation() {
-        await expect(this.courseNameValidationMsg).toHaveText(loginData.dynamicFieldSettings.ValidationMessage);
+        const message = await this.serviceNameInput.evaluate(
+            (el: HTMLInputElement) => el.validationMessage
+        );
+        expect(message).toBe(loginData.dynamicFieldSettings.ValidationMessage);
     }
 }

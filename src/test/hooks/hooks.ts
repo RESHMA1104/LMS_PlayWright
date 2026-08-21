@@ -20,7 +20,8 @@ import { DeletePage } from "../pages/DeleteCoursePage";
 import { deleteService } from "../pages/deteteServicepage";
 import { Addclient } from "../pages/AddClient";
 import { DynamicFieldManagement } from "../pages/dynamicfieldmanagementpage";
-import { DynamicFieldSettingsPage } from "../pages/DynamicFieldSettingsPage";
+import { DynamicPage } from "../pages/DynamicFieldSettingsPage";
+import { ClientModalPage } from "../pages/DynamicFieldClientModel";
 
 // Default Timeout
 setDefaultTimeout(180 * 1000);
@@ -63,7 +64,8 @@ Before(async function (this: BugFinder) {
     this.ServieEdit = new ServieEdit(this.page);
     this.Addclient = new Addclient(this.page)
     this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page)
-    this.dynamicFieldSettingsPage = new DynamicFieldSettingsPage(this.page)
+    this.dynamicFieldSettingsPage = new DynamicPage(this.page)
+    this.clientmodelPage = new ClientModalPage(this.page);
 })
 
 // If the test Failed ScreenShot capture 

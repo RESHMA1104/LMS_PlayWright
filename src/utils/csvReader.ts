@@ -9,11 +9,20 @@ export interface EditReader {
     successmessage: string;
 }
 
+export interface createProgrammingQuestion {
+    categoryName: string, difficultyLevel: string, title: string, description: string, input: string, output: string, successMessage: string;
+}
+
 export function readEditData(): EditReader[] {
     const filePath = path.join(process.cwd(), "test-data", "editCourseCategoryData.csv");
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     return parse(fileContent, { columns: true, skip_empty_lines: true, trim: true }) as EditReader[];
 }
 
+export function readPGQuestionsData(): createProgrammingQuestion[] {
+    const filePath = path.join(process.cwd(), "test-data", "createProgrammingQuestion.csv");
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    return parse(fileContent, { columns: true, skip_empty_lines: true, trim: true }) as createProgrammingQuestion[];
+}
 
 

@@ -20,6 +20,7 @@ import { deleteService } from '../test/pages/deteteServicepage';
 import type { DynamicFieldManagement } from '../test/pages/dynamicfieldmanagementpage';
 // import type { AddService } from '../test/pages/AddnewService';
 import { Addclient } from '../test/pages/AddClient';
+import type { QuestionBankPage } from '../test/pages/questionBankPage';
 
 
 // CustomWorld extends World
@@ -33,15 +34,17 @@ export class BugFinder extends World {
     addcoursestructurePage!: AddCorseStructurePage;
     addCoursePage!: AddCourse;
     editPage!: EditPage;
-    courseFilter!:CourseFilter;
-    
-    AddService! : AddService
-    ServieEdit! : ServieEdit
+    courseFilter!: CourseFilter;
+
+    AddService!: AddService
+    ServieEdit!: ServieEdit
     deletePage!: DeletePage
-    
+
     dynamicfieldmanagementPage!: DynamicFieldManagement;
     deleteService!: deleteService;
-    Addclient!:Addclient;
+    Addclient!: Addclient;
+
+    questionBankPage!: QuestionBankPage;
 
 
 }

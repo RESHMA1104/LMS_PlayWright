@@ -20,6 +20,7 @@ import { DeletePage } from "../pages/DeleteCoursePage";
 import { deleteService } from "../pages/deteteServicepage";
 import { Addclient } from "../pages/AddClient";
 import { DynamicFieldManagement } from "../pages/dynamicfieldmanagementpage";
+import { QuestionBankPage } from "../pages/questionBankPage";
 
 // Default Timeout
 setDefaultTimeout(180 * 1000);
@@ -60,8 +61,9 @@ Before(async function (this: BugFinder) {
     this.deleteService = new deleteService(this.page)
     this.AddService = new AddService(this.page);
     this.ServieEdit = new ServieEdit(this.page);
-    this.Addclient = new Addclient(this.page)
-    this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page)
+    this.Addclient = new Addclient(this.page);
+    this.dynamicfieldmanagementPage = new DynamicFieldManagement(this.page);
+    this.questionBankPage = new QuestionBankPage(this.page);
 })
 
 // If the test Failed ScreenShot capture 

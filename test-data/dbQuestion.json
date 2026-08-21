@@ -1,0 +1,6 @@
+{
+    "query":{
+        "sampleQuery":"SELECT id, username, email FROM users WHERE email = 'testuser@example.com' AND status = 'active';",
+        "expectedQuery":"id |username | email | 42 | test_admin | testuser@example.com |"
+    }
+}

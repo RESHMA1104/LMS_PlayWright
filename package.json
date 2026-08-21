@@ -15,7 +15,7 @@
     "test": "cucumber-js",
     "rishwanth": "cucumber-js --tags @Rishwanth",
     "prasanna": "cucumber-js --tags @Prasanna",
-    "qb":"cucumber-js --tags @QB",
+    "qb":"cucumber-js --tags @RAA",
     "test:rerun": "cucumber-js -p rerun",
     "report": "ts-node src/helper/report.ts",
     "test:report": "npm run test && npm run report",
